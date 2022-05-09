@@ -1,0 +1,503 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EB433F592828B7F800830F26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F582828B7F800830F26 /* AppDelegate.swift */; };
+		EB433F5B2828B7F800830F26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F5A2828B7F800830F26 /* SceneDelegate.swift */; };
+		EB433F5D2828B7F800830F26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F5C2828B7F800830F26 /* ViewController.swift */; };
+		EB433F602828B7F800830F26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB433F5E2828B7F800830F26 /* Main.storyboard */; };
+		EB433F622828B7FB00830F26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB433F612828B7FB00830F26 /* Assets.xcassets */; };
+		EB433F652828B7FB00830F26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB433F632828B7FB00830F26 /* LaunchScreen.storyboard */; };
+		EB433F6F2828BC5300830F26 /* TRkbsMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F6E2828BC5300830F26 /* TRkbsMainVC.swift */; };
+		EB433F722828BD8700830F26 /* ExtensionTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F712828BD8700830F26 /* ExtensionTool.swift */; };
+		EB433F742828BE3E00830F26 /* DataManagerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F732828BE3E00830F26 /* DataManagerTool.swift */; };
+		EB433F762828BF6D00830F26 /* TRkbsSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F752828BF6D00830F26 /* TRkbsSettingVC.swift */; };
+		EB433F7A2828F47A00830F26 /* TRkbsTitleIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F792828F47A00830F26 /* TRkbsTitleIndexView.swift */; };
+		EB433F7E282906B800830F26 /* TRkbsContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F7D282906B800830F26 /* TRkbsContentListView.swift */; };
+		EB433F8028291EE500830F26 /* TRkbsHabitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F7F28291EE500830F26 /* TRkbsHabitVC.swift */; };
+		EF17A3343EEE31969B5C17F2 /* Pods_TRkbsTimeRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3CB8B243E3B90B5BD0248E /* Pods_TRkbsTimeRecord.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4D0EAA09015EFD65A0A89575 /* Pods-TRkbsTimeRecord.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRkbsTimeRecord.release.xcconfig"; path = "Target Support Files/Pods-TRkbsTimeRecord/Pods-TRkbsTimeRecord.release.xcconfig"; sourceTree = "<group>"; };
+		63C443AB731E37D50A1081CF /* Pods-TRkbsTimeRecord.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRkbsTimeRecord.debug.xcconfig"; path = "Target Support Files/Pods-TRkbsTimeRecord/Pods-TRkbsTimeRecord.debug.xcconfig"; sourceTree = "<group>"; };
+		AE3CB8B243E3B90B5BD0248E /* Pods_TRkbsTimeRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRkbsTimeRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB433F552828B7F800830F26 /* TRkbsTimeRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRkbsTimeRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB433F582828B7F800830F26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EB433F5A2828B7F800830F26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EB433F5C2828B7F800830F26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EB433F5F2828B7F800830F26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EB433F612828B7FB00830F26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB433F642828B7FB00830F26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EB433F662828B7FB00830F26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB433F6E2828BC5300830F26 /* TRkbsMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsMainVC.swift; sourceTree = "<group>"; };
+		EB433F712828BD8700830F26 /* ExtensionTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTool.swift; sourceTree = "<group>"; };
+		EB433F732828BE3E00830F26 /* DataManagerTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTool.swift; sourceTree = "<group>"; };
+		EB433F752828BF6D00830F26 /* TRkbsSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsSettingVC.swift; sourceTree = "<group>"; };
+		EB433F792828F47A00830F26 /* TRkbsTitleIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsTitleIndexView.swift; sourceTree = "<group>"; };
+		EB433F7D282906B800830F26 /* TRkbsContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsContentListView.swift; sourceTree = "<group>"; };
+		EB433F7F28291EE500830F26 /* TRkbsHabitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsHabitVC.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB433F522828B7F800830F26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF17A3343EEE31969B5C17F2 /* Pods_TRkbsTimeRecord.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A6ED72081D8C306C3CC02227 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AE3CB8B243E3B90B5BD0248E /* Pods_TRkbsTimeRecord.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1C05242A89170595EC2358A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				63C443AB731E37D50A1081CF /* Pods-TRkbsTimeRecord.debug.xcconfig */,
+				4D0EAA09015EFD65A0A89575 /* Pods-TRkbsTimeRecord.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EB433F4C2828B7F800830F26 = {
+			isa = PBXGroup;
+			children = (
+				EB433F572828B7F800830F26 /* TRkbsTimeRecord */,
+				EB433F562828B7F800830F26 /* Products */,
+				E1C05242A89170595EC2358A /* Pods */,
+				A6ED72081D8C306C3CC02227 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EB433F562828B7F800830F26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB433F552828B7F800830F26 /* TRkbsTimeRecord.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB433F572828B7F800830F26 /* TRkbsTimeRecord */ = {
+			isa = PBXGroup;
+			children = (
+				EB433F702828BD7300830F26 /* ExtensionGroup */,
+				EB433F6D2828BC2C00830F26 /* MainGroup */,
+				EB433F6C2828BC0700830F26 /* Root */,
+			);
+			path = TRkbsTimeRecord;
+			sourceTree = "<group>";
+		};
+		EB433F6C2828BC0700830F26 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				EB433F582828B7F800830F26 /* AppDelegate.swift */,
+				EB433F5A2828B7F800830F26 /* SceneDelegate.swift */,
+				EB433F5C2828B7F800830F26 /* ViewController.swift */,
+				EB433F5E2828B7F800830F26 /* Main.storyboard */,
+				EB433F612828B7FB00830F26 /* Assets.xcassets */,
+				EB433F632828B7FB00830F26 /* LaunchScreen.storyboard */,
+				EB433F662828B7FB00830F26 /* Info.plist */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
+		EB433F6D2828BC2C00830F26 /* MainGroup */ = {
+			isa = PBXGroup;
+			children = (
+				EB433F6E2828BC5300830F26 /* TRkbsMainVC.swift */,
+				EB433F7F28291EE500830F26 /* TRkbsHabitVC.swift */,
+				EB433F752828BF6D00830F26 /* TRkbsSettingVC.swift */,
+				EB433F782828F43100830F26 /* Views */,
+			);
+			path = MainGroup;
+			sourceTree = "<group>";
+		};
+		EB433F702828BD7300830F26 /* ExtensionGroup */ = {
+			isa = PBXGroup;
+			children = (
+				EB433F712828BD8700830F26 /* ExtensionTool.swift */,
+				EB433F732828BE3E00830F26 /* DataManagerTool.swift */,
+			);
+			path = ExtensionGroup;
+			sourceTree = "<group>";
+		};
+		EB433F782828F43100830F26 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB433F792828F47A00830F26 /* TRkbsTitleIndexView.swift */,
+				EB433F7D282906B800830F26 /* TRkbsContentListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB433F542828B7F800830F26 /* TRkbsTimeRecord */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB433F692828B7FB00830F26 /* Build configuration list for PBXNativeTarget "TRkbsTimeRecord" */;
+			buildPhases = (
+				0C5CB3CA80C01292919D8689 /* [CP] Check Pods Manifest.lock */,
+				EB433F512828B7F800830F26 /* Sources */,
+				EB433F522828B7F800830F26 /* Frameworks */,
+				EB433F532828B7F800830F26 /* Resources */,
+				2D5A3C886258CD8F75400A49 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TRkbsTimeRecord;
+			productName = TRkbsTimeRecord;
+			productReference = EB433F552828B7F800830F26 /* TRkbsTimeRecord.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB433F4D2828B7F800830F26 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					EB433F542828B7F800830F26 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+				};
+			};
+			buildConfigurationList = EB433F502828B7F800830F26 /* Build configuration list for PBXProject "TRkbsTimeRecord" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EB433F4C2828B7F800830F26;
+			productRefGroup = EB433F562828B7F800830F26 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB433F542828B7F800830F26 /* TRkbsTimeRecord */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB433F532828B7F800830F26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB433F652828B7FB00830F26 /* LaunchScreen.storyboard in Resources */,
+				EB433F622828B7FB00830F26 /* Assets.xcassets in Resources */,
+				EB433F602828B7F800830F26 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C5CB3CA80C01292919D8689 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TRkbsTimeRecord-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D5A3C886258CD8F75400A49 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TRkbsTimeRecord/Pods-TRkbsTimeRecord-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TRkbsTimeRecord/Pods-TRkbsTimeRecord-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TRkbsTimeRecord/Pods-TRkbsTimeRecord-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB433F512828B7F800830F26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB433F6F2828BC5300830F26 /* TRkbsMainVC.swift in Sources */,
+				EB433F762828BF6D00830F26 /* TRkbsSettingVC.swift in Sources */,
+				EB433F5D2828B7F800830F26 /* ViewController.swift in Sources */,
+				EB433F722828BD8700830F26 /* ExtensionTool.swift in Sources */,
+				EB433F592828B7F800830F26 /* AppDelegate.swift in Sources */,
+				EB433F7E282906B800830F26 /* TRkbsContentListView.swift in Sources */,
+				EB433F5B2828B7F800830F26 /* SceneDelegate.swift in Sources */,
+				EB433F742828BE3E00830F26 /* DataManagerTool.swift in Sources */,
+				EB433F8028291EE500830F26 /* TRkbsHabitVC.swift in Sources */,
+				EB433F7A2828F47A00830F26 /* TRkbsTitleIndexView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EB433F5E2828B7F800830F26 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB433F5F2828B7F800830F26 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EB433F632828B7FB00830F26 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB433F642828B7FB00830F26 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EB433F672828B7FB00830F26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EB433F682828B7FB00830F26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB433F6A2828B7FB00830F26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63C443AB731E37D50A1081CF /* Pods-TRkbsTimeRecord.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0.0;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TRkbsTimeRecord/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimeRecord;
+				INFOPLIST_KEY_NSCameraUsageDescription = "App needs your camera permission to take photo and edit it shape, mask, cut it, add stickers, text and other effect.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "App needs your photo gallery permission to choose photo, and apply the shape editor, video cut, sticker, text and other effect.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App needs your photo gallery permission to choose and save photo, and apply the shape editor, video cut, sticker, textand other effect.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to personalize ads to you";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kbs.TRkbsTimeRecord;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		EB433F6B2828B7FB00830F26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D0EAA09015EFD65A0A89575 /* Pods-TRkbsTimeRecord.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0.0;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TRkbsTimeRecord/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimeRecord;
+				INFOPLIST_KEY_NSCameraUsageDescription = "App needs your camera permission to take photo and edit it shape, mask, cut it, add stickers, text and other effect.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "App needs your photo gallery permission to choose photo, and apply the shape editor, video cut, sticker, text and other effect.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App needs your photo gallery permission to choose and save photo, and apply the shape editor, video cut, sticker, textand other effect.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to personalize ads to you";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kbs.TRkbsTimeRecord;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB433F502828B7F800830F26 /* Build configuration list for PBXProject "TRkbsTimeRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB433F672828B7FB00830F26 /* Debug */,
+				EB433F682828B7FB00830F26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB433F692828B7FB00830F26 /* Build configuration list for PBXNativeTarget "TRkbsTimeRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB433F6A2828B7FB00830F26 /* Debug */,
+				EB433F6B2828B7FB00830F26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB433F4D2828B7F800830F26 /* Project object */;
+}

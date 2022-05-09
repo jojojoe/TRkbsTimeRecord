@@ -1,0 +1,7 @@
+TRkbsTimeRecord.xcodeproj/xcuserdata/
+TRkbsTimeRecord.xcworkspace/
+Pods/
+*.swp
+Podfile.lock
+.DS_Store
+TRkbsTimeRecord.xcodeproj/project.xcworkspace/xcuserdata/
