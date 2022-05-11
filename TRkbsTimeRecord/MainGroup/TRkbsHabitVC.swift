@@ -13,8 +13,8 @@ class TRkbsHabitVC: UIViewController {
     let iconBgV = UIView()
     let iconImgV = UIImageView()
     let textFiled = UITextField()
-    
-    
+    let colorView = TRkbsColorView(frame: .zero, colors: DataManagerTool.default.colorList)
+    let iconView = TRkbsIconView(frame: .zero, icons: DataManagerTool.default.iconList)
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -114,7 +114,6 @@ extension TRkbsHabitVC {
         
         iconImgV.adhere(toSuperview: iconBgV)
             .image("")
-            .backgroundColor(.lightGray)
         iconImgV.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.height.equalTo(30)
@@ -132,7 +131,7 @@ extension TRkbsHabitVC {
         textFiled.returnKeyType = .done
         textFiled.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textFiled.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
-        textFiled.adhere(toSuperview: view)
+        textFiled.adhere(toSuperview: contentBgV)
         textFiled.snp.makeConstraints {
             $0.width.equalTo(150)
             $0.top.equalTo(iconBgV.snp.bottom).offset(10)
@@ -143,10 +142,53 @@ extension TRkbsHabitVC {
         textFiled.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         textFiled.textColor = UIColor.white
         textFiled.layer.cornerRadius = 4
-//        textFiled.layer.borderColor = UIColor(hexString: "#FB558D")?.cgColor
-//        textFiled.layer.borderWidth = 1
+        textFiled.layer.borderColor = UIColor.white.withAlphaComponent(0.2).cgColor
+        textFiled.layer.borderWidth = 1
         
+        //
         
+        colorView.adhere(toSuperview: contentBgV)
+        colorView.snp.makeConstraints {
+            $0.top.equalTo(textFiled.snp.bottom).offset(22)
+            $0.left.right.equalToSuperview()
+            $0.height.equalTo(colorView.cellW * 2 + colorView.padding + 35)
+        }
+        colorView.colorSelectBlock = {
+            [weak self] colorStr, colorIndexP in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                
+            }
+        }
+        
+        //
+        
+        iconView.adhere(toSuperview: contentBgV)
+        iconView.snp.makeConstraints {
+            $0.top.equalTo(colorView.snp.bottom).offset(22)
+            $0.left.right.equalToSuperview()
+            $0.height.equalTo(colorView.cellW * 4 + colorView.padding * 3 + 35)
+        }
+        iconView.iconSelectBlock = {
+            [weak self] iconStr, iconIndexP in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                
+            }
+        }
+        
+        //
+        let tagV = TRkbsTagView()
+        tagV.adhere(toSuperview: view)
+        tagV.snp.makeConstraints {
+            $0.top.equalTo(iconView.snp.bottom).offset(22)
+            $0.left.right.equalToSuperview()
+            $0.height.equalTo(30 + 35)
+        }
+        tagV.tagCollection.selectItemBlock = {
+            [weak self] tagitem in
+            guard let `self` = self else {return}
+        }
     }
     
 }

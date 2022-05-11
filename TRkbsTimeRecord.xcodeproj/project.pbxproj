@@ -20,6 +20,9 @@
 		EB433F7A2828F47A00830F26 /* TRkbsTitleIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F792828F47A00830F26 /* TRkbsTitleIndexView.swift */; };
 		EB433F7E282906B800830F26 /* TRkbsContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F7D282906B800830F26 /* TRkbsContentListView.swift */; };
 		EB433F8028291EE500830F26 /* TRkbsHabitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F7F28291EE500830F26 /* TRkbsHabitVC.swift */; };
+		EB433F822829F9D500830F26 /* TRkbsColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F812829F9D500830F26 /* TRkbsColorView.swift */; };
+		EB433F84282A0B1700830F26 /* TRkbsIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F83282A0B1700830F26 /* TRkbsIconView.swift */; };
+		EB433FDD282A440600830F26 /* TRkbsTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433FDC282A440600830F26 /* TRkbsTagView.swift */; };
 		EF17A3343EEE31969B5C17F2 /* Pods_TRkbsTimeRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3CB8B243E3B90B5BD0248E /* Pods_TRkbsTimeRecord.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +45,9 @@
 		EB433F792828F47A00830F26 /* TRkbsTitleIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsTitleIndexView.swift; sourceTree = "<group>"; };
 		EB433F7D282906B800830F26 /* TRkbsContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsContentListView.swift; sourceTree = "<group>"; };
 		EB433F7F28291EE500830F26 /* TRkbsHabitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsHabitVC.swift; sourceTree = "<group>"; };
+		EB433F812829F9D500830F26 /* TRkbsColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsColorView.swift; sourceTree = "<group>"; };
+		EB433F83282A0B1700830F26 /* TRkbsIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsIconView.swift; sourceTree = "<group>"; };
+		EB433FDC282A440600830F26 /* TRkbsTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsTagView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,9 @@
 			children = (
 				EB433F792828F47A00830F26 /* TRkbsTitleIndexView.swift */,
 				EB433F7D282906B800830F26 /* TRkbsContentListView.swift */,
+				EB433F812829F9D500830F26 /* TRkbsColorView.swift */,
+				EB433F83282A0B1700830F26 /* TRkbsIconView.swift */,
+				EB433FDC282A440600830F26 /* TRkbsTagView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,7 +272,10 @@
 				EB433F762828BF6D00830F26 /* TRkbsSettingVC.swift in Sources */,
 				EB433F5D2828B7F800830F26 /* ViewController.swift in Sources */,
 				EB433F722828BD8700830F26 /* ExtensionTool.swift in Sources */,
+				EB433F84282A0B1700830F26 /* TRkbsIconView.swift in Sources */,
+				EB433FDD282A440600830F26 /* TRkbsTagView.swift in Sources */,
 				EB433F592828B7F800830F26 /* AppDelegate.swift in Sources */,
+				EB433F822829F9D500830F26 /* TRkbsColorView.swift in Sources */,
 				EB433F7E282906B800830F26 /* TRkbsContentListView.swift in Sources */,
 				EB433F5B2828B7F800830F26 /* SceneDelegate.swift in Sources */,
 				EB433F742828BE3E00830F26 /* DataManagerTool.swift in Sources */,

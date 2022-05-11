@@ -24,6 +24,9 @@ class TRkbsTitleIndexView: UIView {
         super.init(frame: frame)
         loadData()
         setupView()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.collection.reloadData()
+        }
     }
     
     
@@ -68,7 +71,8 @@ extension TRkbsTitleIndexView: UICollectionViewDataSource {
         } else {
             cell.updateSelectStatus(isSele: false)
         }
-        
+        cell.clipsToBounds()
+        cell.selectV.layer.cornerRadius = cell.selectV.bounds.height/2
         return cell
     }
     
@@ -126,6 +130,7 @@ extension TRkbsTitleIndexView: UICollectionViewDelegate {
 
 class TRkbsTypeCollectionCell: UICollectionViewCell {
     let nameLabel = UILabel()
+    let selectV = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -137,6 +142,13 @@ class TRkbsTypeCollectionCell: UICollectionViewCell {
     }
     
     func setupView() {
+        selectV.adhere(toSuperview: contentView)
+            .backgroundColor(.black)
+        selectV.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.left.equalTo(5)
+            $0.top.equalTo(3)
+        }
         nameLabel
             .color(UIColor.white)
             .textAlignment(.center)
@@ -155,10 +167,13 @@ class TRkbsTypeCollectionCell: UICollectionViewCell {
             nameLabel
                 .color(UIColor(hexString: "#F3A953")!)
                 .fontName(14, "AppleSDGothicNeo-SemiBold")
+            selectV.isHidden = false
+            
         } else {
             nameLabel
                 .color(UIColor.white)
                 .fontName(14, "AppleSDGothicNeo-Bold")
+            selectV.isHidden = true
         }
     }
 }
