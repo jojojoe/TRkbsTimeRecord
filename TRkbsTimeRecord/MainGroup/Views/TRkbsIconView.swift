@@ -76,11 +76,11 @@ extension TRkbsIconView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withClass: TRkbsIconCell.self, for: indexPath)
         let item = iconList[indexPath.item]
         cell.contentImgV.image(item)
-            .backgroundColor(.darkGray)
+//            .backgroundColor(.darkGray)
         cell.layer.cornerRadius = 4
         cell.clipsToBounds()
         if currentIcon == item {
-            cell.contentView.backgroundColor(UIColor.white.withAlphaComponent(0.5))
+            cell.contentView.backgroundColor(UIColor.white.withAlphaComponent(0.35))
         } else {
             cell.contentView.backgroundColor(UIColor.white.withAlphaComponent(0.2))
         }

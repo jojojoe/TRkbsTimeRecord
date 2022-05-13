@@ -12,6 +12,7 @@ class TRkbsMainVC: UIViewController {
 
     let topDetailLabel = UILabel()
     let addNewBtn = UIButton()
+    let titleIndexView = TRkbsTitleIndexView()
     let contentListV = TRkbsContentListView()
     let gradientMaskV = UIView()
     var didlayoutOnce: Once = Once()
@@ -97,7 +98,7 @@ class TRkbsMainVC: UIViewController {
         }
         
         //
-        let titleIndexView = TRkbsTitleIndexView()
+        
         titleIndexView.adhere(toSuperview: view)
         titleIndexView.snp.makeConstraints {
             $0.left.right.equalToSuperview()
@@ -105,9 +106,11 @@ class TRkbsMainVC: UIViewController {
             $0.height.equalTo(40)
         }
         titleIndexView.selectItemBlock = {
-            [weak self] indexP in
+            [weak self] _ , indexP in
             guard let `self` = self else {return}
-             
+            DispatchQueue.main.async {
+                self.titleIndexViewSelectAction(indexPath: indexP)
+            }
         }
         //
         contentListV.adhere(toSuperview: view)
@@ -115,6 +118,20 @@ class TRkbsMainVC: UIViewController {
             $0.left.right.equalToSuperview()
             $0.top.equalTo(titleIndexView.snp.bottom)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+        contentListV.scrollCollectionBlock = {
+            [weak self] scrollIndexP in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.updateTopTitleViewStatus(indexPath: scrollIndexP)
+            }
+        }
+        contentListV.selectItemBlock = {
+            [weak self] habitItem in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.clickContentItem(habitItem: habitItem)
+            }
         }
         //
         
@@ -151,6 +168,21 @@ class TRkbsMainVC: UIViewController {
 }
 
 extension TRkbsMainVC {
+    func updateTopTitleViewStatus(indexPath: IndexPath) {
+        titleIndexView.currentTitleType = DataManagerTool.default.timeTypeTagList[indexPath.item]
+        titleIndexView.collection.reloadData()
+    }
+    
+    func clickContentItem(habitItem: TRkHabitPreviewItem) {
+        showRecordHabitVC(habitItem: habitItem)
+    }
+    
+    func titleIndexViewSelectAction(indexPath: IndexPath) {
+        contentListV.collection.scrollToItem(at: IndexPath(item: 0, section: indexPath.item), at: .top, animated: true)
+    }
+}
+
+extension TRkbsMainVC {
     @objc func settingBtnClick(sender: UIButton) {
         
     }
@@ -172,4 +204,32 @@ extension TRkbsMainVC {
             .text("至今已经专注20天04小时30分")
     }
     
+}
+
+extension TRkbsMainVC {
+    func showRecordHabitVC(habitItem: TRkHabitPreviewItem) {
+        let recordHabitVC = TRkbsRecordPageVC(editingHabitItem: habitItem)
+        self.addChild(recordHabitVC)
+        view.addSubview(recordHabitVC.view)
+        recordHabitVC.view.alpha = 0
+        UIView.animate(withDuration: 0.25) {
+            [weak self] in
+            guard let `self` = self else {return}
+            recordHabitVC.view.alpha = 1
+        }
+        recordHabitVC.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        recordHabitVC.cancelClickActionBlock = {
+            UIView.animate(withDuration: 0.25) { [weak self] in
+                guard let `self` = self else {return}
+                recordHabitVC.view.alpha = 0
+            } completion: {[weak self] (finished) in
+                guard let `self` = self else {return}
+                DispatchQueue.main.async {
+                    [weak self] in
+                    guard let `self` = self else {return}
+                    recordHabitVC.removeViewAndControllerFromParentViewController()
+                }
+            }
+        }
+    }
 }

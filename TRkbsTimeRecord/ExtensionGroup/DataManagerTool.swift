@@ -17,15 +17,16 @@ struct TRkIconItem: Codable {
 
 struct TRkPreviewBounld {
     var timeTypeStr = ""
-    var previewItems: [TRkPreviewItem] = []
+    var previewItems: [TRkHabitPreviewItem] = []
     
 }
 
-struct TRkPreviewItem: Codable {
+struct TRkHabitPreviewItem: Codable {
+    var habitId: String = ""
     var iconStr: String = ""
     var bgColorStr: String = ""
     var nameStr: String = ""
-    var contentTypeId: String = ""
+    var timeTypeTagStr: String = ""
     var timeCount: Double = 0
     
 }
@@ -40,10 +41,22 @@ class DataManagerTool: NSObject {
 //        return DataManagerTool.default.loadJson([TRkIconItem].self, name: "iconList") ?? []
 //    }
     
-    var iconList: [String] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"]
+    var iconList: [String] = ["sticker1", "sticker2", "sticker3", "sticker4", "sticker5", "sticker6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"]
     
-    var colorList: [String] = ["#FCFCFC", "#EDF2B1", "#F2D0B1", "#CEF4FC", "#CEDBFC", "#D7CEFC", "#EDCEFC", "#FCCEDB", "#E6FF83", "#FFE483", "#83C3FF", "#B983FF", "#8388FF", "#FF83DC"]
+    var colorList: [String] = ["#F2D0B1", "#EDF2B1", "#FCFCFC", "#CEF4FC", "#CEDBFC", "#D7CEFC", "#EDCEFC", "#FCCEDB", "#E6FF83", "#FFE483", "#83C3FF", "#B983FF", "#8388FF", "#FF83DC"]
     
+    var timeTypeTagList: [String] = ["任意", "早晨", "中午", "下午", "晚上", "睡前"]
+    
+    var countList: [String] {
+        var list: [String] = []
+        
+        for i in 1...60 {
+            list.append("\(i)")
+        }
+        
+        return list
+    }
+    var minhourList: [String] = ["分钟", "小时"]
     
 }
 

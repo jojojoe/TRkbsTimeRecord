@@ -12,7 +12,7 @@ class TRkbsTitleIndexView: UIView {
     var collection: UICollectionView!
     var titleTypeList: [String] = []
     var currentTitleType: String?
-    var selectItemBlock: ((IndexPath)->Void)?
+    var selectItemBlock: ((String, IndexPath)->Void)?
     
     func udpateCollectionIndexPath(indexPath: IndexPath) {
         currentTitleType = titleTypeList[indexPath.item]
@@ -35,8 +35,8 @@ class TRkbsTitleIndexView: UIView {
     }
     
     func loadData() {
-        currentTitleType = "任意"
-        titleTypeList = ["任意", "早晨", "中午", "下午", "晚上", "睡前"]
+        titleTypeList = DataManagerTool.default.timeTypeTagList
+        currentTitleType = titleTypeList.first
     }
     
     func setupView() {
@@ -119,7 +119,7 @@ extension TRkbsTitleIndexView: UICollectionViewDelegate {
         let name = titleTypeList[indexPath.item]
         currentTitleType = name
         collectionView.reloadData()
-        selectItemBlock?(indexPath)
+        selectItemBlock?(name, indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

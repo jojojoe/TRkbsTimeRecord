@@ -14,7 +14,7 @@ class TRkbsContentListView: UIView {
     var collection: UICollectionView!
     var contentBoundList: [TRkPreviewBounld] = []
     var scrollCollectionBlock: ((IndexPath)->Void)?
-    
+    var selectItemBlock: ((TRkHabitPreviewItem)->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,9 +33,9 @@ class TRkbsContentListView: UIView {
 extension TRkbsContentListView {
     func loadData() {
         // test
-        let item1 = TRkPreviewItem(iconStr: "", bgColorStr: "#ACA9CD", nameStr: "早起", contentTypeId: "12334556", timeCount: 360000)
-        let item2 = TRkPreviewItem(iconStr: "", bgColorStr: "#F6DAC0", nameStr: "坚持阅读", contentTypeId: "12334557", timeCount: 260000)
-        let item3 = TRkPreviewItem(iconStr: "", bgColorStr: "#D9D9E8", nameStr: "绘画", contentTypeId: "12334558", timeCount: 660000)
+        let item1 = TRkHabitPreviewItem(habitId: "12334556", iconStr: "", bgColorStr: "#ACA9CD", nameStr: "看书", timeTypeTagStr: "任意", timeCount: 360000)
+        let item2 = TRkHabitPreviewItem(habitId: "12334557", iconStr: "", bgColorStr: "#F6DAC0", nameStr: "坚持阅读", timeTypeTagStr: "早晨", timeCount: 260000)
+        let item3 = TRkHabitPreviewItem(habitId: "12334558", iconStr: "", bgColorStr: "#D9D9E8", nameStr: "绘画", timeTypeTagStr: "早晨", timeCount: 660000)
         let bounld1 = TRkPreviewBounld(timeTypeStr: "任意", previewItems: [item1])
         let bounld2 = TRkPreviewBounld(timeTypeStr: "早晨", previewItems: [item2, item3])
         
@@ -126,7 +126,9 @@ extension TRkbsContentListView: UICollectionViewDelegateFlowLayout {
 
 extension TRkbsContentListView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let bundle = contentBoundList[indexPath.section]
+        let item = bundle.previewItems[indexPath.item]
+        selectItemBlock?(item)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

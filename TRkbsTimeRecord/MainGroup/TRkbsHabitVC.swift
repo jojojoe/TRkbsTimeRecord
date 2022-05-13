@@ -9,21 +9,83 @@ import UIKit
 
 class TRkbsHabitVC: UIViewController {
 
-    var currentBgColorStr: String = "#F6DAC0"
     let iconBgV = UIView()
     let iconImgV = UIImageView()
     let textFiled = UITextField()
     let colorView = TRkbsColorView(frame: .zero, colors: DataManagerTool.default.colorList)
     let iconView = TRkbsIconView(frame: .zero, icons: DataManagerTool.default.iconList)
+    let tagV = TRkbsTagView()
+    let deleteBtn = UIButton()
+    var didlayoutOnce: Once = Once()
+    var currentHabitPreviewItem: TRkHabitPreviewItem?
+    
+    var currentIconStr: String = DataManagerTool.default.iconList[0]
+    var currentBgColorStr: String = DataManagerTool.default.colorList[0]
+    var currentTimeTypeTagStr: String = DataManagerTool.default.timeTypeTagList[0]
+    
+    
+    
+    init(editingHabitItem: TRkHabitPreviewItem? = nil) {
+        self.currentHabitPreviewItem = editingHabitItem
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        didlayoutOnce.run {
+            if let habitItem = currentHabitPreviewItem {
+                currentIconStr = habitItem.iconStr
+                currentBgColorStr = habitItem.bgColorStr
+                currentTimeTypeTagStr = habitItem.timeTypeTagStr
+                deleteBtn.isHidden = false
+            } else {
+                deleteBtn.isHidden = true
+            }
+            updateContentUIStatus()
+        }
+    }
 
-  
+}
 
+extension TRkbsHabitVC {
+    func updateContentUIStatus() {
+        updateIconImg(iconStr: currentIconStr)
+        updateBgColor(bgColorStr: currentBgColorStr)
+        updateTimeTypeTag(tagStr: currentTimeTypeTagStr)
+    }
+    
+    func updateIconImg(iconStr: String) {
+        currentIconStr = iconStr
+        iconImgV.image(iconStr)
+        iconView.currentIcon = iconStr
+        iconView.collection.reloadData()
+    }
+    
+    func updateBgColor(bgColorStr: String) {
+        currentBgColorStr = bgColorStr
+        iconBgV.backgroundColor(UIColor(hexString: bgColorStr) ?? UIColor.white)
+        colorView.currentColor = bgColorStr
+        colorView.collection.reloadData()
+    }
+    
+    func updateTimeTypeTag(tagStr: String) {
+        currentTimeTypeTagStr = tagStr
+        tagV.tagCollection.currentTitleType = tagStr
+        tagV.tagCollection.collection.reloadData()
+    }
+    
+    
 }
 
 extension TRkbsHabitVC {
@@ -157,12 +219,11 @@ extension TRkbsHabitVC {
             [weak self] colorStr, colorIndexP in
             guard let `self` = self else {return}
             DispatchQueue.main.async {
-                
+                self.updateBgColor(bgColorStr: colorStr)
             }
         }
         
         //
-        
         iconView.adhere(toSuperview: contentBgV)
         iconView.snp.makeConstraints {
             $0.top.equalTo(colorView.snp.bottom).offset(22)
@@ -173,12 +234,12 @@ extension TRkbsHabitVC {
             [weak self] iconStr, iconIndexP in
             guard let `self` = self else {return}
             DispatchQueue.main.async {
-                
+                self.updateIconImg(iconStr: iconStr)
             }
         }
         
         //
-        let tagV = TRkbsTagView()
+        
         tagV.adhere(toSuperview: view)
         tagV.snp.makeConstraints {
             $0.top.equalTo(iconView.snp.bottom).offset(22)
@@ -186,8 +247,25 @@ extension TRkbsHabitVC {
             $0.height.equalTo(30 + 35)
         }
         tagV.tagCollection.selectItemBlock = {
-            [weak self] tagitem in
+            [weak self] tagitem, _ in
             guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.updateTimeTypeTag(tagStr: tagitem)
+            }
+        }
+        
+        //
+        deleteBtn.adhere(toSuperview: view)
+            .backgroundColor(UIColor(hexString: "#E5463A")!)
+            .title("删除这个习惯")
+            .titleColor(.white)
+            .font(20, "AppleSDGothicNeo-SemiBold")
+        deleteBtn.layer.cornerRadius = 6
+        deleteBtn.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(tagV.snp.bottom).offset(40)
+            $0.left.equalTo(40)
+            $0.height.equalTo(44)
         }
     }
     
@@ -223,3 +301,6 @@ extension TRkbsHabitVC: UITextFieldDelegate {
     
     
 }
+
+
+

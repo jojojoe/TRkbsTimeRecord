@@ -8,7 +8,7 @@
 import UIKit
 
 class TRkbsTagView: UIView {
-    var currentIcon = "任意"
+    
     let tagCollection = TRkbsTitleIndexView()
     
     override init(frame: CGRect) {
