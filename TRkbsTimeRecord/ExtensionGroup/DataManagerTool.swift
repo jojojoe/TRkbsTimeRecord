@@ -21,6 +21,15 @@ struct TRkPreviewBounld {
     
 }
 
+struct TRkDayRecordItem {
+    var recordDate: String
+    var habitId: String = ""
+    var timeCount: Double
+    var infoStr: String
+    
+    
+}
+
 struct TRkHabitPreviewItem: Codable {
     var habitId: String = ""
     var iconStr: String = ""
@@ -61,8 +70,28 @@ class DataManagerTool: NSObject {
 }
 
 extension DataManagerTool {
+    
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM-dd"
+        let str = formatter.string(from: date)
+        return str
+    }
+    
+    func convertDateStrToDate(dateStr: String) -> Date {
+        let timestamp = dateStr
+        let dou = Double(timestamp) ?? 0
+        let timeInterStr = String(dou / 1000)
+        if let interval = TimeInterval.init(timeInterStr) {
+            let recordDate = Date(timeIntervalSince1970: interval)
+            return recordDate
+        } else {
+            return Date()
+        }
+    }
+    
     //  second 秒数
-     func formatDate(second: Double) -> String{
+     func formatDate(second: Double) -> String {
 
        let formatter = DateComponentsFormatter()
         // . dropMiddle为  0d 00h 00m 格式 (需要其它格式可以自己点进去看看)
@@ -76,6 +105,33 @@ extension DataManagerTool {
       // 结果默认格式为 1d 1h 1m
         var resultStr = formatter.string(from: TimeInterval(second)) ?? ""
 
+         var tempStr = resultStr.replacingOccurrences(of: "d", with: "")
+         tempStr = tempStr.replacingOccurrences(of: "h", with: "")
+         tempStr = tempStr.replacingOccurrences(of: "m", with: "")
+         let counts = tempStr.components(separatedBy: " ")
+         if counts.count == 1 {
+             resultStr = counts.first! + "分钟"
+         } else if counts.count == 2 {
+             if counts.last! == "0" {
+                 resultStr = counts.first! + "小时"
+             } else {
+                 resultStr = counts.first! + "小时" + counts.last! + "分钟"
+             }
+             
+         } else if counts.count == 3 {
+             var hStr = ""
+             var mStr = ""
+             if counts[1] != "0" {
+                 hStr = counts[1] + "小时"
+             }
+             if counts.last! != "0" {
+                 mStr = counts.last! + "分钟"
+             }
+             resultStr = counts.first! + "天" + hStr + mStr
+         }
+        
+         return resultStr
+         
       // 处理为 1天 1小时 1分钟 （根据自己需求处理）
         resultStr = resultStr.replacingOccurrences(of: "d", with: "天", options: .literal, range: nil)
         resultStr = resultStr.replacingOccurrences(of: "h", with: "小时", options: .literal, range: nil)

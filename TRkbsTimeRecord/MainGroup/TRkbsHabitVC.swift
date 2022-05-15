@@ -22,7 +22,7 @@ class TRkbsHabitVC: UIViewController {
     var currentIconStr: String = DataManagerTool.default.iconList[0]
     var currentBgColorStr: String = DataManagerTool.default.colorList[0]
     var currentTimeTypeTagStr: String = DataManagerTool.default.timeTypeTagList[0]
-    
+    var currentHaibtName: String = ""
     
     
     init(editingHabitItem: TRkHabitPreviewItem? = nil) {
@@ -48,6 +48,7 @@ class TRkbsHabitVC: UIViewController {
                 currentIconStr = habitItem.iconStr
                 currentBgColorStr = habitItem.bgColorStr
                 currentTimeTypeTagStr = habitItem.timeTypeTagStr
+                currentHaibtName = habitItem.nameStr
                 deleteBtn.isHidden = false
             } else {
                 deleteBtn.isHidden = true
@@ -63,6 +64,7 @@ extension TRkbsHabitVC {
         updateIconImg(iconStr: currentIconStr)
         updateBgColor(bgColorStr: currentBgColorStr)
         updateTimeTypeTag(tagStr: currentTimeTypeTagStr)
+        textFiled.text = currentHaibtName
     }
     
     func updateIconImg(iconStr: String) {

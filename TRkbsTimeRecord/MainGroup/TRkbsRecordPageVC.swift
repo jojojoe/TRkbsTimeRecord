@@ -18,6 +18,9 @@ class TRkbsRecordPageVC: UIViewController {
     let countPicker = UIPickerView()
     let danweiPicker = UIPickerView()
     let infoTextView = UITextView()
+    let recordPage = TRkbsHabitRecordListView()
+    let contentV = UIView()
+    
     init(editingHabitItem: TRkHabitPreviewItem) {
         self.currentHabitPreviewItem = editingHabitItem
         super.init(nibName: nil, bundle: nil)
@@ -61,13 +64,14 @@ extension TRkbsRecordPageVC {
         bgBtn.addTarget(self, action: #selector(backBtnClick(sender: )), for: .touchUpInside)
         
         //
-        let contentV = UIView()
+        
         contentV.adhere(toSuperview: view)
             .backgroundColor(UIColor(hexString: "#252525")!)
             .clipsToBounds()
-        contentV.layer.cornerRadius = 8
+        contentV.layer.cornerRadius = 5
         contentV.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(0)
             $0.width.equalTo(320)
             $0.height.equalTo(410)
         }
@@ -163,7 +167,7 @@ extension TRkbsRecordPageVC {
             .adhere(toSuperview: contentV)
         infoTextView.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12)
         infoTextView.textColor = UIColor.white
-        infoTextView.layer.cornerRadius = 8
+        infoTextView.layer.cornerRadius = 5
         infoTextView.placeholder = "记录些什么吧...\n\n想法💡"
         infoTextView.text = ""
         infoTextView.snp.makeConstraints {
@@ -195,14 +199,17 @@ extension TRkbsRecordPageVC {
         //
         let recordListBtn = UIButton()
         recordListBtn.adhere(toSuperview: contentV)
-                .backgroundColor(UIColor(hexString: "#CDC6C2")!)
+            .backgroundColor(UIColor(hexString: "#A24B2C")!, .selected)
+            .backgroundColor(UIColor(hexString: "#CDC6C2")!, .normal)
                 .title("查看记录日志")
                 .image(UIImage(named: ""))
                 .font(15, "AppleSDGothicNeo-SemiBold")
-                .titleColor(UIColor(hexString: "#A24B2C")!)
+                .titleColor(UIColor(hexString: "#CDC6C2")!, .selected)
+                .titleColor(UIColor(hexString: "#A24B2C")!, .normal)
         recordListBtn.layer.borderColor = UIColor(hexString: "#1C1C1D")!.cgColor
         recordListBtn.layer.borderWidth = 1.5
         recordListBtn.layer.cornerRadius = 22
+        recordListBtn.clipsToBounds()
         recordListBtn.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(contentV.snp.bottom).offset(-20)
@@ -211,8 +218,55 @@ extension TRkbsRecordPageVC {
         }
         recordListBtn.addTarget(self, action: #selector(recordListBtnClick(sender:)), for: .touchUpInside)
         
+        //
+        recordPage.alpha(0)
+        recordPage.adhere(toSuperview: view)
+        recordPage.snp.makeConstraints {
+            $0.left.equalTo(contentV.snp.left)
+            $0.top.equalTo(contentV.snp.bottom).offset(-7)
+            $0.right.equalTo(contentV.snp.right)
+            $0.height.equalTo(200)
+        }
+        recordPage.layer.cornerRadius = 5
+        recordPage.clipsToBounds()
+        
     }
     
+    func showRecorListStatus(isShow: Bool) {
+        //
+//        recordPage.updateRecordData()
+        
+        var recordAlpha: CGFloat = 0
+        
+        if isShow {
+            recordAlpha = 1
+            contentV.snp.remakeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.centerY.equalToSuperview().offset(-100)
+                $0.width.equalTo(320)
+                $0.height.equalTo(410)
+            }
+            
+        } else {
+            recordAlpha = 0
+            contentV.snp.remakeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.centerY.equalToSuperview().offset(0)
+                $0.width.equalTo(320)
+                $0.height.equalTo(410)
+            }
+        }
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            self.recordPage.alpha = recordAlpha
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
+            
+        } completion: { finished in
+            
+        }
+
+    }
 }
 
 extension TRkbsRecordPageVC {
@@ -225,7 +279,8 @@ extension TRkbsRecordPageVC {
     }
     
     @objc func recordListBtnClick(sender: UIButton) {
-        
+        sender.isSelected = !sender.isSelected
+        showRecorListStatus(isShow: sender.isSelected)
     }
     
     @objc func backBtnClick(sender: UIButton) {

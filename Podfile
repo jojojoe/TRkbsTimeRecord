@@ -16,12 +16,12 @@ target 'TRkbsTimeRecord' do
   pod 'ZKProgressHUD'
   pod 'SwiftyJSON'
   pod 'SQLite.swift'
-  pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git'
+#  pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git'
   
 # store
   pod 'SwiftyStoreKit'
   pod 'TPInAppReceipt'
 
-#  Debug
+ #Debug
   pod 'LookinServer', :configurations => ['Debug']
 end
