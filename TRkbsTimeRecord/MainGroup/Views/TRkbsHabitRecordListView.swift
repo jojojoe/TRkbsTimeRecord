@@ -8,7 +8,7 @@
 import UIKit
 
 class TRkbsHabitRecordListView: UIView {
-
+    var habitRecordItemClick: ((TRkDayRecordItem)->Void)?
     var dayRecordList: [TRkDayRecordItem] = []
     var collection: UICollectionView!
     
@@ -108,6 +108,9 @@ extension TRkbsHabitRecordListView: UICollectionViewDelegateFlowLayout {
 
 extension TRkbsHabitRecordListView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = dayRecordList[indexPath.item]
+        habitRecordItemClick?(item)
+
         
     }
     

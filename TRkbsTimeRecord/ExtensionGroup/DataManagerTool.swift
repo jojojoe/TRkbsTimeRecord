@@ -71,9 +71,9 @@ class DataManagerTool: NSObject {
 
 extension DataManagerTool {
     
-    func formatDate(date: Date) -> String {
+    func formatDate(formatStr: String = "MM-dd", date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM-dd"
+        formatter.dateFormat = formatStr
         let str = formatter.string(from: date)
         return str
     }

@@ -229,6 +229,15 @@ extension TRkbsRecordPageVC {
         }
         recordPage.layer.cornerRadius = 5
         recordPage.clipsToBounds()
+        recordPage.habitRecordItemClick = {
+            [weak self] habitDayItem in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                let vc = TEkbsRecordEditVC(recordItem: habitDayItem)
+                self.present(vc, animated: true, completion: nil)
+            }
+            
+        }
         
     }
     
