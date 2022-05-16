@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class TRkbsRecordPageVC: UIViewController {
 
@@ -20,6 +21,8 @@ class TRkbsRecordPageVC: UIViewController {
     let infoTextView = UITextView()
     let recordPage = TRkbsHabitRecordListView()
     let contentV = UIView()
+    var currentCountIndex: Int = 0
+    var currentDanweiIndex: Int = 0
     
     init(editingHabitItem: TRkHabitPreviewItem) {
         self.currentHabitPreviewItem = editingHabitItem
@@ -150,6 +153,7 @@ extension TRkbsRecordPageVC {
             $0.height.equalTo(80)
         }
         countPicker.selectRow(9, inComponent: 0, animated: false)
+        currentCountIndex = 9
         //
         
         danweiPicker.dataSource = self
@@ -161,6 +165,7 @@ extension TRkbsRecordPageVC {
             $0.width.equalTo(60)
             $0.height.equalTo(80)
         }
+        currentDanweiIndex = 0
         //
         infoTextView.delegate = self
         infoTextView.backgroundColor(UIColor.white.withAlphaComponent(0.2))
@@ -280,7 +285,15 @@ extension TRkbsRecordPageVC {
 
 extension TRkbsRecordPageVC {
     @objc func dakaBtnClick(sender: UIButton) {
+        let dateStr = CLongLong(round(Date().unixTimestamp*1000)).string
         
+        let countStr = DataManagerTool.default.countList[currentCountIndex]
+        
+        let dayRecordItem = TRkDayRecordItem(recordDate: dateStr, habitId: currentHabitPreviewItem.habitId, timeCount: countStr.double() ?? 0, infoStr: infoTextView.text)
+        
+        TRkbsDBManager.default.addHabitDayRecord(model: dayRecordItem) {
+            debugPrint("add habit day record success")
+        }
     }
     
     @objc func reeditBtnClick(sender: UIButton) {
@@ -345,6 +358,15 @@ extension TRkbsRecordPageVC: UIPickerViewDataSource, UIPickerViewDelegate {
         
         return pickerLabel!
     }
+     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == countPicker {
+            currentCountIndex = row
+        } else {
+            currentDanweiIndex = row
+        }
+    }
+    
 }
 
 extension TRkbsRecordPageVC: UITextViewDelegate {

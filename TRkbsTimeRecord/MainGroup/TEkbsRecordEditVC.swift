@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import Alertift
 
 class TEkbsRecordEditVC: UIViewController {
     var recordItem: TRkDayRecordItem
     let countPicker = UIPickerView()
     let danweiPicker = UIPickerView()
     let infoTextView = UITextView()
+    var currentCountIndex: Int = 0
+    var currentDanweiIndex: Int = 0
+    
     
     init(recordItem: TRkDayRecordItem) {
         self.recordItem = recordItem
@@ -87,6 +91,7 @@ class TEkbsRecordEditVC: UIViewController {
         } else {
             countDanweiIndex = 1
         }
+        currentDanweiIndex = countDanweiIndex
         //
         let recordTitleLabel = UILabel()
         recordTitleLabel.adhere(toSuperview: topBanner)
@@ -109,6 +114,7 @@ class TEkbsRecordEditVC: UIViewController {
             $0.height.equalTo(80)
         }
         countPicker.selectRow(countIntIndex - 1, inComponent: 0, animated: false)
+        currentCountIndex = countIntIndex - 1
         //
         
         danweiPicker.dataSource = self
@@ -192,10 +198,23 @@ class TEkbsRecordEditVC: UIViewController {
     
     @objc func dakaBtnClick(sender: UIButton) {
         
+        let countStr = DataManagerTool.default.countList[currentCountIndex]
+        
+        let dayRecordItem = TRkDayRecordItem(recordDate: recordItem.recordDate, habitId: recordItem.habitId, timeCount: countStr.double() ?? 0, infoStr: infoTextView.text)
+        
+        TRkbsDBManager.default.addHabitDayRecord(model: dayRecordItem) {
+            debugPrint("add habit day record success")
+        }
     }
     
     @objc func deleteBtnClick(sender: UIButton) {
         
+        Alertift.alert(title: "确定要删除这条时间记录吗？", message: "")
+            .action(.cancel("取消"))
+            .action(.default("确定"), handler: { _, _, _ in
+                
+            })
+            .show(on: self, completion: nil)
     }
     
     @objc func maskKeyViewClick(sender: UIButton) {
@@ -211,6 +230,14 @@ class TEkbsRecordEditVC: UIViewController {
         maskKeyView.addTarget(self, action: #selector(maskKeyViewClick(sender: )), for: .touchUpInside)
         maskKeyView.snp.makeConstraints {
             $0.left.right.top.bottom.equalToSuperview()
+        }
+    }
+}
+
+extension TEkbsRecordEditVC {
+    func deleteDayRecordItem() {
+        TRkbsDBManager.default.deleteHabitDayRecordList(recordDateId: recordItem.recordDate) {
+            debugPrint("delete day record success")
         }
     }
 }
@@ -247,6 +274,17 @@ extension TEkbsRecordEditVC: UIPickerViewDataSource, UIPickerViewDelegate {
         
         return pickerLabel!
     }
+    
+    
+   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+       if pickerView == countPicker {
+           currentCountIndex = row
+       } else {
+           currentDanweiIndex = row
+       }
+   }
+   
+    
 }
 
 extension TEkbsRecordEditVC: UITextViewDelegate {

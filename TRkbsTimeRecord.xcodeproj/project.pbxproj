@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D855CA43282F72C100443428 /* TRkbsHabitRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D855CA42282F72C100443428 /* TRkbsHabitRecordListView.swift */; };
 		D855CA4528312EA600443428 /* TEkbsRecordEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D855CA4428312EA600443428 /* TEkbsRecordEditVC.swift */; };
+		EB1192A92831E99D00FA6A7D /* TRkbsDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1192A82831E99D00FA6A7D /* TRkbsDBManager.swift */; };
 		EB37E781282DF48100579584 /* TRkbsRecordPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37E780282DF48100579584 /* TRkbsRecordPageVC.swift */; };
 		EB433F592828B7F800830F26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F582828B7F800830F26 /* AppDelegate.swift */; };
 		EB433F5B2828B7F800830F26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F5A2828B7F800830F26 /* SceneDelegate.swift */; };
@@ -35,6 +36,7 @@
 		AE3CB8B243E3B90B5BD0248E /* Pods_TRkbsTimeRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRkbsTimeRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D855CA42282F72C100443428 /* TRkbsHabitRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsHabitRecordListView.swift; sourceTree = "<group>"; };
 		D855CA4428312EA600443428 /* TEkbsRecordEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEkbsRecordEditVC.swift; sourceTree = "<group>"; };
+		EB1192A82831E99D00FA6A7D /* TRkbsDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsDBManager.swift; sourceTree = "<group>"; };
 		EB37E780282DF48100579584 /* TRkbsRecordPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsRecordPageVC.swift; sourceTree = "<group>"; };
 		EB433F552828B7F800830F26 /* TRkbsTimeRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRkbsTimeRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB433F582828B7F800830F26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EB1192A72831E98A00FA6A7D /* DBManager */ = {
+			isa = PBXGroup;
+			children = (
+				EB1192A82831E99D00FA6A7D /* TRkbsDBManager.swift */,
+			);
+			path = DBManager;
+			sourceTree = "<group>";
+		};
 		EB433F4C2828B7F800830F26 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +116,7 @@
 		EB433F572828B7F800830F26 /* TRkbsTimeRecord */ = {
 			isa = PBXGroup;
 			children = (
+				EB1192A72831E98A00FA6A7D /* DBManager */,
 				EB433F702828BD7300830F26 /* ExtensionGroup */,
 				EB433F6D2828BC2C00830F26 /* MainGroup */,
 				EB433F6C2828BC0700830F26 /* Root */,
@@ -287,6 +298,7 @@
 				EB433FDD282A440600830F26 /* TRkbsTagView.swift in Sources */,
 				EB433F592828B7F800830F26 /* AppDelegate.swift in Sources */,
 				D855CA4528312EA600443428 /* TEkbsRecordEditVC.swift in Sources */,
+				EB1192A92831E99D00FA6A7D /* TRkbsDBManager.swift in Sources */,
 				EB433F822829F9D500830F26 /* TRkbsColorView.swift in Sources */,
 				EB433F7E282906B800830F26 /* TRkbsContentListView.swift in Sources */,
 				EB433F5B2828B7F800830F26 /* SceneDelegate.swift in Sources */,

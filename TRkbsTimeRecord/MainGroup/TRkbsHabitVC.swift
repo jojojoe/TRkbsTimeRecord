@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import ZKProgressHUD
+import Alertift
 
 class TRkbsHabitVC: UIViewController {
 
@@ -269,10 +271,34 @@ extension TRkbsHabitVC {
             $0.left.equalTo(40)
             $0.height.equalTo(44)
         }
+        deleteBtn.addTarget(self, action: #selector(deleteBtnClick(sender:)), for: .touchUpInside)
     }
     
+    @objc func deleteBtnClick(sender: UIButton) {
+        
+        Alertift.alert(title: "确定要删除该习惯吗", message: "这将删除掉所有该习惯下的记录")
+            .action(.cancel("取消"))
+            .action(.default("确定"), handler: {[weak self] _, _, _ in
+                guard let `self` = self else {return}
+                DispatchQueue.main.async {
+                    self.deleteHaibtPreview()
+                }
+            })
+            .show(on: self, completion: nil)
+    }
 }
 
+
+
+extension TRkbsHabitVC {
+    func deleteHaibtPreview() {
+        if let habitItem = currentHabitPreviewItem {
+            TRkbsDBManager.default.deleteHabitBound(habitId: habitItem.habitId) {
+                debugPrint("delete habit preview success")
+            }
+        }
+    }
+}
 
 extension TRkbsHabitVC {
     
@@ -285,6 +311,23 @@ extension TRkbsHabitVC {
     }
     
     @objc func doneBtnClick(sender: UIButton) {
+        if textFiled.text == nil || textFiled.text == "" {
+            ZKProgressHUD.showMessage("请输入习惯名称")
+            return
+        }
+        if let historyItem = currentHabitPreviewItem {
+            let item = TRkHabitPreviewItem(habitId: historyItem.habitId, iconStr: currentIconStr, bgColorStr: currentBgColorStr, nameStr: currentHaibtName, timeTypeTagStr: currentTimeTypeTagStr, timeCount: 0)
+            TRkbsDBManager.default.updateHabitBound(model: item) {
+                debugPrint("update habit preview success")
+            }
+        } else {
+            // add new
+            let item = TRkHabitPreviewItem(habitId: "nil", iconStr: "", bgColorStr: "", nameStr: "", timeTypeTagStr: "", timeCount: 0)
+            
+            TRkbsDBManager.default.addHabitBound(model: item) {
+                debugPrint("add habit preview success")
+            }
+        }
         
     }
     @objc func bgTapBtnClick(sender: UIButton) {
@@ -298,6 +341,7 @@ extension TRkbsHabitVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         debugPrint("return end")
         textField.resignFirstResponder()
+        currentHaibtName = textField.text ?? ""
         return true
     }
     

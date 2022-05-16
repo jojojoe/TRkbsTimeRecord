@@ -178,7 +178,9 @@ extension TRkbsMainVC {
     }
     
     func titleIndexViewSelectAction(indexPath: IndexPath) {
-        contentListV.collection.scrollToItem(at: IndexPath(item: 0, section: indexPath.item), at: .top, animated: true)
+        if indexPath.item < contentListV.contentBoundList.count {
+            contentListV.collection.scrollToItem(at: IndexPath(item: 0, section: indexPath.item), at: .top, animated: true)
+        }
     }
 }
 
