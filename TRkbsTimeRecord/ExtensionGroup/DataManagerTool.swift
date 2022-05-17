@@ -40,6 +40,11 @@ struct TRkHabitPreviewItem: Codable {
     
 }
 
+extension Notification.Name {
+    static let updateHabitList = Notification.Name("noti_updateHabitList")
+    static let updateDayRecordList = Notification.Name("noti_updateDayRecordList")
+}
+
 class DataManagerTool: NSObject {
     static let `default` = DataManagerTool()
     override init() {

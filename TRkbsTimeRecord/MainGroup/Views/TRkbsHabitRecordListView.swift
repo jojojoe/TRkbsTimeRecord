@@ -30,13 +30,22 @@ class TRkbsHabitRecordListView: UIView {
 }
 
 extension TRkbsHabitRecordListView {
-    func updateRecordData() {
-        let test1 = TRkDayRecordItem(recordDate: "1652505868", habitId: "1", timeCount: 3600, infoStr: "")
-        let test2 = TRkDayRecordItem(recordDate: "1652531778", habitId: "2", timeCount: 50 * 60, infoStr: "我今天特别努力")
-        let test3 = TRkDayRecordItem(recordDate: "1652532088", habitId: "3", timeCount: 60 * 60 * 4, infoStr: "我今天特别努力")
-        let test4 = TRkDayRecordItem(recordDate: "1652111088", habitId: "4", timeCount: 60 * 60 * 2, infoStr: "我今天特别努力")
-        let test5 = TRkDayRecordItem(recordDate: "1652111088", habitId: "4", timeCount: 60 * 60 * 4, infoStr: "我今天特别努力")
-        dayRecordList = [test1, test2, test3, test4, test5]
+    func updateRecordData(habitId: String) {
+//        let test1 = TRkDayRecordItem(recordDate: "1652505868", habitId: "1", timeCount: 3600, infoStr: "")
+//        let test2 = TRkDayRecordItem(recordDate: "1652531778", habitId: "2", timeCount: 50 * 60, infoStr: "我今天特别努力")
+//        let test3 = TRkDayRecordItem(recordDate: "1652532088", habitId: "3", timeCount: 60 * 60 * 4, infoStr: "我今天特别努力")
+//        let test4 = TRkDayRecordItem(recordDate: "1652111088", habitId: "4", timeCount: 60 * 60 * 2, infoStr: "我今天特别努力")
+//        let test5 = TRkDayRecordItem(recordDate: "1652111088", habitId: "4", timeCount: 60 * 60 * 4, infoStr: "我今天特别努力")
+//        dayRecordList = [test1, test2, test3, test4, test5]
+        
+        TRkbsDBManager.default.selectDayRecordItemList(habitId: habitId) {[weak self] daylist in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.dayRecordList = daylist
+                self.collection.reloadData()
+            }
+        }
+        
         collection.reloadData()
     }
     

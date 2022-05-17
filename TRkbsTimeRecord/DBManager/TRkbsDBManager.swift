@@ -49,7 +49,7 @@ extension TRkbsDBManager {
         // 习惯的总信息
         
         let table = Table("HabitBound")
-        let habitId = Expression<Int>("habitId") // id
+        let habitId = Expression<String>("habitId") // id
         let iconStr = Expression<String>("iconStr")
         let bgColorStr = Expression<String>("bgColorStr")
         let nameStr = Expression<String>("nameStr")
@@ -57,7 +57,7 @@ extension TRkbsDBManager {
         
         do {
             try db?.run(table.create { t in
-                t.column(habitId, primaryKey: .autoincrement)
+                t.column(habitId, primaryKey: true)
                 t.column(iconStr)
                 t.column(bgColorStr)
                 t.column(nameStr)
@@ -93,9 +93,10 @@ extension TRkbsDBManager {
     func addHabitBound(model: TRkHabitPreviewItem, completionBlock: (()->Void)?) {
         do {
             
-            let insetSql = try db?.prepare("INSERT OR REPLACE INTO HabitBound (iconStr, bgColorStr, nameStr, timeTypeTagStr) VALUES (?,?,?,?)")
-            try insetSql?.run([model.iconStr, model.bgColorStr, model.nameStr, model.timeTypeTagStr])
-            
+            let insetSql = try db?.prepare("INSERT OR REPLACE INTO HabitBound (habitId, iconStr, bgColorStr, nameStr, timeTypeTagStr) VALUES (?,?,?,?,?)")
+            let dateStr = CLongLong(round(Date().unixTimestamp*1000)).string
+            try insetSql?.run([dateStr ,model.iconStr, model.bgColorStr, model.nameStr, model.timeTypeTagStr])
+            completionBlock?()
         } catch {
             debugPrint("error = \(error)")
         }
@@ -104,11 +105,12 @@ extension TRkbsDBManager {
     func updateHabitBound(model: TRkHabitPreviewItem, completionBlock: (()->Void)?) {
         do {
             
-            let _ = try db?.prepare("UPDATE HabitBound SET iconStr = '\(model.iconStr)', bgColorStr = '\(model.bgColorStr)', nameStr = '\(model.nameStr)', timeTypeTagStr = '\(model.timeTypeTagStr)' WHERE habitId = '\(model.habitId)'")
+            let insetSql = try db?.prepare("REPLACE INTO HabitBound (habitId, iconStr, bgColorStr, nameStr, timeTypeTagStr) VALUES (?,?,?,?,?)")
             
-//            let insetSql = try db?.prepare("UPDATE HabitBound SET iconStr = '\(model.iconStr)', bgColorStr = '\(model.bgColorStr)', nameStr = '\(model.nameStr)', timeTypeTagStr = '\(model.timeTypeTagStr)' WHERE habitId = '\(model.habitId)'")
-//            try insetSql?.run(nil)
-//            try insetSql?.run([model.iconStr, model.bgColorStr, model.nameStr, model.timeTypeTagStr])
+            try insetSql?.run([model.habitId ,model.iconStr, model.bgColorStr, model.nameStr, model.timeTypeTagStr])
+            
+            completionBlock?()
+            
             
         } catch {
             debugPrint("error = \(error)")
@@ -143,12 +145,13 @@ extension TRkbsDBManager {
                 var shuiqianList: [TRkHabitPreviewItem] = []
                 
                 for row in results {
-                    let habitId_m = row[0] as? Int ?? 1
+                    
+                    let habitId_m = row[0] as? String ?? ""
                     let iconStr_m = row[1] as? String ?? ""
                     let bgColorStr_m = row[2] as? String ?? ""
                     let nameStr_m = row[3] as? String ?? ""
                     let timeTypeTagStr_m = row[4] as? String ?? ""
-                    let dayRecordItem = TRkHabitPreviewItem(habitId: habitId_m.string, iconStr: iconStr_m, bgColorStr: bgColorStr_m, nameStr: nameStr_m, timeTypeTagStr: timeTypeTagStr_m, timeCount: 0)
+                    let dayRecordItem = TRkHabitPreviewItem(habitId: habitId_m, iconStr: iconStr_m, bgColorStr: bgColorStr_m, nameStr: nameStr_m, timeTypeTagStr: timeTypeTagStr_m, timeCount: 0)
                     
                     if timeTypeTagStr_m == "任意" {
                         renyiList.append(dayRecordItem)
@@ -205,9 +208,9 @@ extension TRkbsDBManager {
     func addHabitDayRecord(model: TRkDayRecordItem, completionBlock: (()->Void)?) {
         do {
             
-            let insetSql = try db?.prepare("INSERT OR REPLACE INTO DayRecordList (recordDate, habitId, timeCount, infoStr) VALUES (?,?,?,?)")
+            let insetSql = try db?.prepare("INSERT OR REPLACE INTO DayRecordList (dayRecordDate, habitId, timeCount, infoStr) VALUES (?,?,?,?)")
             try insetSql?.run([model.recordDate, model.habitId, model.timeCount, model.infoStr])
-            
+            completionBlock?()
         } catch {
             debugPrint("error = \(error)")
         }
@@ -215,7 +218,7 @@ extension TRkbsDBManager {
     
     func deleteHabitDayRecordList(recordDateId: String, completionBlock: (()->Void)?) {
         let table = Table("DayRecordList")
-        let db_recordDate = Expression<String>("recordDate")
+        let db_recordDate = Expression<String>("dayRecordDate")
         
         let deleteItem = table.filter(db_recordDate == recordDateId)
         
@@ -234,6 +237,7 @@ extension TRkbsDBManager {
         
         do {
             try db?.run(deleteItem.delete())
+            completionBlock?()
         } catch {
             debugPrint("dberror: delete table failed :\(habitId)")
         }

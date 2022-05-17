@@ -11,6 +11,7 @@ import Alertift
 
 class TRkbsHabitVC: UIViewController {
 
+    let backBtn = UIButton()
     let iconBgV = UIView()
     let iconImgV = UIImageView()
     let textFiled = UITextField()
@@ -18,6 +19,7 @@ class TRkbsHabitVC: UIViewController {
     let iconView = TRkbsIconView(frame: .zero, icons: DataManagerTool.default.iconList)
     let tagV = TRkbsTagView()
     let deleteBtn = UIButton()
+    let bgTapBtn = UIButton()
     var didlayoutOnce: Once = Once()
     var currentHabitPreviewItem: TRkHabitPreviewItem?
     
@@ -107,7 +109,7 @@ extension TRkbsHabitVC {
         }
          
         //
-        let backBtn = UIButton()
+        
         backBtn.adhere(toSuperview: topBanner)
             .image(UIImage(named: ""))
             .backgroundColor(.lightGray)
@@ -156,13 +158,7 @@ extension TRkbsHabitVC {
         let contentBgV = UIView()
         contentBgV.adhere(toSuperview: contentScrollV)
         contentBgV.frame = CGRect(x: 0, y: 0, width: UIScreen.width, height: 1200)
-        //
-        let bgTapBtn = UIButton()
-        bgTapBtn.adhere(toSuperview: contentBgV)
-        bgTapBtn.addTarget(self, action: #selector(bgTapBtnClick(sender: )), for: .touchUpInside)
-        bgTapBtn.snp.makeConstraints {
-            $0.left.right.top.bottom.equalToSuperview()
-        }
+        
         
         //
 
@@ -272,6 +268,14 @@ extension TRkbsHabitVC {
             $0.height.equalTo(44)
         }
         deleteBtn.addTarget(self, action: #selector(deleteBtnClick(sender:)), for: .touchUpInside)
+        
+        //
+        bgTapBtn.isHidden = true
+        bgTapBtn.adhere(toSuperview: view)
+        bgTapBtn.addTarget(self, action: #selector(bgTapBtnClick(sender: )), for: .touchUpInside)
+        bgTapBtn.snp.makeConstraints {
+            $0.left.right.top.bottom.equalToSuperview()
+        }
     }
     
     @objc func deleteBtnClick(sender: UIButton) {
@@ -295,6 +299,10 @@ extension TRkbsHabitVC {
         if let habitItem = currentHabitPreviewItem {
             TRkbsDBManager.default.deleteHabitBound(habitId: habitItem.habitId) {
                 debugPrint("delete habit preview success")
+                NotificationCenter.default.post(name: .updateHabitList, object: nil)
+                DispatchQueue.main.async {
+                    self.backBtnClick(sender: self.backBtn)
+                }
             }
         }
     }
@@ -311,37 +319,57 @@ extension TRkbsHabitVC {
     }
     
     @objc func doneBtnClick(sender: UIButton) {
-        if textFiled.text == nil || textFiled.text == "" {
+        if textFiled.text == nil || textFiled.text == "" || currentHaibtName == "" {
             ZKProgressHUD.showMessage("请输入习惯名称")
             return
         }
         if let historyItem = currentHabitPreviewItem {
-            let item = TRkHabitPreviewItem(habitId: historyItem.habitId, iconStr: currentIconStr, bgColorStr: currentBgColorStr, nameStr: currentHaibtName, timeTypeTagStr: currentTimeTypeTagStr, timeCount: 0)
-            TRkbsDBManager.default.updateHabitBound(model: item) {
-                debugPrint("update habit preview success")
+            if historyItem.nameStr == currentHaibtName && historyItem.bgColorStr == currentBgColorStr && historyItem.timeTypeTagStr == currentTimeTypeTagStr && historyItem.iconStr == currentIconStr {
+                backBtnClick(sender: self.backBtn)
+                return
+            } else {
+                let item = TRkHabitPreviewItem(habitId: historyItem.habitId, iconStr: currentIconStr, bgColorStr: currentBgColorStr, nameStr: currentHaibtName, timeTypeTagStr: currentTimeTypeTagStr, timeCount: 0)
+                TRkbsDBManager.default.updateHabitBound(model: item) {
+                    debugPrint("update habit preview success")
+                    NotificationCenter.default.post(name: .updateHabitList, object: nil)
+                    DispatchQueue.main.async {
+                        self.backBtnClick(sender: self.backBtn)
+                    }
+                }
             }
+            
         } else {
             // add new
-            let item = TRkHabitPreviewItem(habitId: "nil", iconStr: "", bgColorStr: "", nameStr: "", timeTypeTagStr: "", timeCount: 0)
+            let item = TRkHabitPreviewItem(habitId: "nil", iconStr: currentIconStr, bgColorStr: currentBgColorStr, nameStr: currentHaibtName, timeTypeTagStr: currentTimeTypeTagStr, timeCount: 0)
             
             TRkbsDBManager.default.addHabitBound(model: item) {
                 debugPrint("add habit preview success")
+                NotificationCenter.default.post(name: .updateHabitList, object: nil)
+                DispatchQueue.main.async {
+                    self.backBtnClick(sender: self.backBtn)
+                }
             }
         }
-        
-    }
-    @objc func bgTapBtnClick(sender: UIButton) {
-        textFiled.resignFirstResponder()
     }
     
+    @objc func bgTapBtnClick(sender: UIButton) {
+        textFiled.resignFirstResponder()
+        currentHaibtName = textFiled.text ?? ""
+        bgTapBtn.isHidden = true
+    }
     
 }
 
 extension TRkbsHabitVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        bgTapBtn.isHidden = false
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         debugPrint("return end")
         textField.resignFirstResponder()
         currentHaibtName = textField.text ?? ""
+        bgTapBtn.isHidden = true
         return true
     }
     

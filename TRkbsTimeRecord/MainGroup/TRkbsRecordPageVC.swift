@@ -41,7 +41,19 @@ class TRkbsRecordPageVC: UIViewController {
         
     }
     
+    func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDayRecordList), name: .updateDayRecordList, object: nil)
+    }
 }
+
+extension TRkbsRecordPageVC {
+    @objc func updateDayRecordList() {
+        if recordPage.alpha == 1 {
+            recordPage.updateRecordData()
+        }
+    }
+}
+
 extension TRkbsRecordPageVC {
     func updateContenStatus() {
         topTitleBgV.backgroundColor(UIColor(hexString: currentHabitPreviewItem.bgColorStr) ?? UIColor.white)
@@ -248,7 +260,7 @@ extension TRkbsRecordPageVC {
     
     func showRecorListStatus(isShow: Bool) {
         //
-//        recordPage.updateRecordData()
+//
         
         var recordAlpha: CGFloat = 0
         
@@ -260,7 +272,7 @@ extension TRkbsRecordPageVC {
                 $0.width.equalTo(320)
                 $0.height.equalTo(410)
             }
-            
+            recordPage.updateRecordData()
         } else {
             recordAlpha = 0
             contentV.snp.remakeConstraints {
@@ -293,11 +305,13 @@ extension TRkbsRecordPageVC {
         
         TRkbsDBManager.default.addHabitDayRecord(model: dayRecordItem) {
             debugPrint("add habit day record success")
+            
         }
     }
     
     @objc func reeditBtnClick(sender: UIButton) {
         self.navigationController?.pushViewController(TRkbsHabitVC(editingHabitItem: currentHabitPreviewItem), animated: true)
+        cancelClickActionBlock?()
     }
     
     @objc func recordListBtnClick(sender: UIButton) {

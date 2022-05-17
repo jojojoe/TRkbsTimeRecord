@@ -23,6 +23,7 @@ class TRkbsMainVC: UIViewController {
         super.viewDidLoad()
 
         setupView()
+        addNotification()
     }
     
     override func viewDidLayoutSubviews() {
@@ -32,6 +33,19 @@ class TRkbsMainVC: UIViewController {
             self.gradientMaskV.gradientBackground(UIColor.clear, UIColor(hexString: "#1C1C1D")!)
         }
         
+        
+    }
+    
+    func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateHabitList), name: .updateHabitList, object: nil)
+    }
+    
+    @objc func updateHabitList() {
+        DispatchQueue.main.async {
+            [weak self] in
+            guard let `self` = self else {return}
+            self.contentListV.loadData()
+        }
         
     }
 

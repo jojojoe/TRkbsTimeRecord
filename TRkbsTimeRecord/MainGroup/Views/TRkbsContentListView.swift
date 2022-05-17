@@ -120,7 +120,12 @@ extension TRkbsContentListView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        if section == contentBoundList.count - 1 {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 78, right: 0)
+        } else {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 6, right: 0)
+        }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

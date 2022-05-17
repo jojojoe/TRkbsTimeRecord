@@ -25,7 +25,7 @@ let AppAppStoreID: String = ""
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        TRkbsDBManager.default.prepareDB()
         registerNotifications(application)
         
         return true
