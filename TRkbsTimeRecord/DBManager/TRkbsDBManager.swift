@@ -224,6 +224,7 @@ extension TRkbsDBManager {
         
         do {
             try db?.run(deleteItem.delete())
+            completionBlock?()
         } catch {
             debugPrint("dberror: delete table failed :\(recordDateId)")
         }
@@ -248,7 +249,7 @@ extension TRkbsDBManager {
     func selectDayRecordItemList(habitId: String, completionBlock: (([TRkDayRecordItem])->Void)?) {
         do {
             var recordList: [TRkDayRecordItem] = []
-            if let results = try db?.prepare("select * from DayRecordList WHERE habitId = '\(habitId)'") {
+            if let results = try db?.prepare("select * from DayRecordList WHERE habitId = '\(habitId)' ORDER BY dayRecordDate DESC;") {
                 for row in results {
                     
                     let recordDate_m = row[0] as? String ?? ""

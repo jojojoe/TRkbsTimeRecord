@@ -300,8 +300,12 @@ extension TRkbsHabitVC {
             TRkbsDBManager.default.deleteHabitBound(habitId: habitItem.habitId) {
                 debugPrint("delete habit preview success")
                 NotificationCenter.default.post(name: .updateHabitList, object: nil)
-                DispatchQueue.main.async {
-                    self.backBtnClick(sender: self.backBtn)
+                ZKProgressHUD.showSuccess("删除成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+                    [weak self] in
+                    guard let `self` = self else {return}
+                    DispatchQueue.main.async {
+                        self.backBtnClick(sender: self.backBtn)
+                    }
                 }
             }
         }

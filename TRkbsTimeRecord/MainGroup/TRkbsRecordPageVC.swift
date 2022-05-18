@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import ZKProgressHUD
 
 class TRkbsRecordPageVC: UIViewController {
 
@@ -23,6 +24,8 @@ class TRkbsRecordPageVC: UIViewController {
     let contentV = UIView()
     var currentCountIndex: Int = 0
     var currentDanweiIndex: Int = 0
+    let bgBtn = UIButton()
+    var maskKeyView: UIButton?
     
     init(editingHabitItem: TRkHabitPreviewItem) {
         self.currentHabitPreviewItem = editingHabitItem
@@ -34,27 +37,50 @@ class TRkbsRecordPageVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         updateContenStatus()
-        
+        addNotification()
     }
     
     func addNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateDayRecordList), name: .updateDayRecordList, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateHabitList), name: .updateHabitList, object: nil)
     }
 }
 
 extension TRkbsRecordPageVC {
     @objc func updateDayRecordList() {
         if recordPage.alpha == 1 {
-            recordPage.updateRecordData()
+            recordPage.updateRecordData(habitId: currentHabitPreviewItem.habitId)
         }
     }
+    
+    @objc func updateHabitList() {
+        //
+        updateHabitAllTimeCount()
+        
+    }
+    
+    
 }
 
 extension TRkbsRecordPageVC {
+    func updateHabitAllTimeCount() {
+        TRkbsDBManager.default.selectDayRecordItemListTimeCount(habitId: currentHabitPreviewItem.habitId) {[weak self] timeCount in
+            guard let `self` = self else {return}
+            let timeStr = DataManagerTool.default.formatDate(second: timeCount)
+            DispatchQueue.main.async {
+                self.topDetailLabel.text("该习惯已经坚持:\(timeStr)")
+            }
+        }
+    }
+    
     func updateContenStatus() {
         topTitleBgV.backgroundColor(UIColor(hexString: currentHabitPreviewItem.bgColorStr) ?? UIColor.white)
         topTitleLabel.text(currentHabitPreviewItem.nameStr)
@@ -71,7 +97,7 @@ extension TRkbsRecordPageVC {
         view.backgroundColor(UIColor(hexString: "#000000")!.withAlphaComponent(0.3))
             .clipsToBounds()
         //
-        let bgBtn = UIButton()
+        
         bgBtn.adhere(toSuperview: view)
         bgBtn.snp.makeConstraints {
             $0.left.right.top.bottom.equalToSuperview()
@@ -182,6 +208,7 @@ extension TRkbsRecordPageVC {
         infoTextView.delegate = self
         infoTextView.backgroundColor(UIColor.white.withAlphaComponent(0.2))
             .adhere(toSuperview: contentV)
+        infoTextView.returnKeyType = .done
         infoTextView.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12)
         infoTextView.textColor = UIColor.white
         infoTextView.layer.cornerRadius = 5
@@ -272,7 +299,7 @@ extension TRkbsRecordPageVC {
                 $0.width.equalTo(320)
                 $0.height.equalTo(410)
             }
-            recordPage.updateRecordData()
+            recordPage.updateRecordData(habitId: currentHabitPreviewItem.habitId)
         } else {
             recordAlpha = 0
             contentV.snp.remakeConstraints {
@@ -300,12 +327,28 @@ extension TRkbsRecordPageVC {
         let dateStr = CLongLong(round(Date().unixTimestamp*1000)).string
         
         let countStr = DataManagerTool.default.countList[currentCountIndex]
+        var countValue: Double = 0
         
-        let dayRecordItem = TRkDayRecordItem(recordDate: dateStr, habitId: currentHabitPreviewItem.habitId, timeCount: countStr.double() ?? 0, infoStr: infoTextView.text)
+        if currentDanweiIndex == 0 {
+            countValue = (countStr.double() ?? 0) * 60
+        } else {
+            countValue = (countStr.double() ?? 0) * 60 * 60
+        }
+        
+        let dayRecordItem = TRkDayRecordItem(recordDate: dateStr, habitId: currentHabitPreviewItem.habitId, timeCount: countValue, infoStr: infoTextView.text)
         
         TRkbsDBManager.default.addHabitDayRecord(model: dayRecordItem) {
             debugPrint("add habit day record success")
-            
+            NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
+            DispatchQueue.main.async {
+                ZKProgressHUD.showSuccess("打卡成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+                    [weak self] in
+                    guard let `self` = self else {return}
+                    DispatchQueue.main.async {
+                        self.cancelClickActionBlock?()
+                    }
+                }
+            }
         }
     }
     
@@ -328,7 +371,9 @@ extension TRkbsRecordPageVC {
 
 extension TRkbsRecordPageVC {
     func showEndKeybordView() {
+        
         let maskKeyView = UIButton()
+        self.maskKeyView = maskKeyView
         maskKeyView.adhere(toSuperview: view)
         maskKeyView.addTarget(self, action: #selector(maskKeyViewClick(sender: )), for: .touchUpInside)
         maskKeyView.snp.makeConstraints {
@@ -393,6 +438,10 @@ extension TRkbsRecordPageVC: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
+            if let _ = self.maskKeyView {
+                self.maskKeyView?.removeFromSuperview()
+                self.maskKeyView = nil
+            }
         }
         return true
     }

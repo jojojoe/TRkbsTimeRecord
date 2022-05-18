@@ -7,7 +7,7 @@
 
 import UIKit
 import Alertift
-
+import ZKProgressHUD
 class TEkbsRecordEditVC: UIViewController {
     var recordItem: TRkDayRecordItem
     let countPicker = UIPickerView()
@@ -15,7 +15,7 @@ class TEkbsRecordEditVC: UIViewController {
     let infoTextView = UITextView()
     var currentCountIndex: Int = 0
     var currentDanweiIndex: Int = 0
-    
+    let backBtn = UIButton()
     
     init(recordItem: TRkDayRecordItem) {
         self.recordItem = recordItem
@@ -51,7 +51,7 @@ class TEkbsRecordEditVC: UIViewController {
         
         
        //
-       let backBtn = UIButton()
+       
         backBtn.adhere(toSuperview: topBanner)
            .image(UIImage(named: ""))
            .backgroundColor(.lightGray)
@@ -199,11 +199,26 @@ class TEkbsRecordEditVC: UIViewController {
     @objc func dakaBtnClick(sender: UIButton) {
         
         let countStr = DataManagerTool.default.countList[currentCountIndex]
+        var countValue: Double = 0
+        if currentDanweiIndex == 0 {
+            countValue = (countStr.double() ?? 0) * 60
+        } else {
+            countValue = (countStr.double() ?? 0) * 60 * 60
+        }
         
-        let dayRecordItem = TRkDayRecordItem(recordDate: recordItem.recordDate, habitId: recordItem.habitId, timeCount: countStr.double() ?? 0, infoStr: infoTextView.text)
+        let dayRecordItem = TRkDayRecordItem(recordDate: recordItem.recordDate, habitId: recordItem.habitId, timeCount: countValue, infoStr: infoTextView.text)
         
         TRkbsDBManager.default.addHabitDayRecord(model: dayRecordItem) {
             debugPrint("add habit day record success")
+            NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
+            NotificationCenter.default.post(name: .updateHabitList, object: nil)
+            ZKProgressHUD.showSuccess("修改成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+                [weak self] in
+                guard let `self` = self else {return}
+                DispatchQueue.main.async {
+                    self.backBtnClick(sender: self.backBtn)
+                }
+            }
         }
     }
     
@@ -211,8 +226,11 @@ class TEkbsRecordEditVC: UIViewController {
         
         Alertift.alert(title: "确定要删除这条时间记录吗？", message: "")
             .action(.cancel("取消"))
-            .action(.default("确定"), handler: { _, _, _ in
-                
+            .action(.default("确定"), handler: {[weak self] _, _, _ in
+                guard let `self` = self else {return}
+                DispatchQueue.main.async {
+                    self.deleteDayRecordItem()
+                }
             })
             .show(on: self, completion: nil)
     }
@@ -238,6 +256,15 @@ extension TEkbsRecordEditVC {
     func deleteDayRecordItem() {
         TRkbsDBManager.default.deleteHabitDayRecordList(recordDateId: recordItem.recordDate) {
             debugPrint("delete day record success")
+            NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
+            NotificationCenter.default.post(name: .updateHabitList, object: nil)
+            ZKProgressHUD.showSuccess("删除成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+                [weak self] in
+                guard let `self` = self else {return}
+                DispatchQueue.main.async {
+                    self.backBtnClick(sender: self.backBtn)
+                }
+            }
         }
     }
 }

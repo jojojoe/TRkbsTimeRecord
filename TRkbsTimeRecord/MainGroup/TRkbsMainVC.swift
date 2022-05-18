@@ -26,6 +26,10 @@ class TRkbsMainVC: UIViewController {
         addNotification()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -46,7 +50,6 @@ class TRkbsMainVC: UIViewController {
             guard let `self` = self else {return}
             self.contentListV.loadData()
         }
-        
     }
 
     func setupView() {

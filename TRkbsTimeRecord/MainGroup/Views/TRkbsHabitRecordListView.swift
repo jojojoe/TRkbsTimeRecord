@@ -11,12 +11,13 @@ class TRkbsHabitRecordListView: UIView {
     var habitRecordItemClick: ((TRkDayRecordItem)->Void)?
     var dayRecordList: [TRkDayRecordItem] = []
     var collection: UICollectionView!
+    var currentHaibtId: String?
     
     override init(frame: CGRect) {
         
         super.init(frame: frame)
         setupView()
-        updateRecordData()
+        
     }
     
     
@@ -37,7 +38,7 @@ extension TRkbsHabitRecordListView {
 //        let test4 = TRkDayRecordItem(recordDate: "1652111088", habitId: "4", timeCount: 60 * 60 * 2, infoStr: "我今天特别努力")
 //        let test5 = TRkDayRecordItem(recordDate: "1652111088", habitId: "4", timeCount: 60 * 60 * 4, infoStr: "我今天特别努力")
 //        dayRecordList = [test1, test2, test3, test4, test5]
-        
+        currentHaibtId = habitId
         TRkbsDBManager.default.selectDayRecordItemList(habitId: habitId) {[weak self] daylist in
             guard let `self` = self else {return}
             DispatchQueue.main.async {
