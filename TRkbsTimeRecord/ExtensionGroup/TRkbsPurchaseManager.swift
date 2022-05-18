@@ -63,6 +63,9 @@ class TRkbsPurchaseManager: NSObject {
         loadDefaultData()
     }
     
+    func consumeCoin() {
+        costCoin(coin: coinCostCount)
+    }
     
     func costCoin(coin: Int) {
         coinCount -= coin

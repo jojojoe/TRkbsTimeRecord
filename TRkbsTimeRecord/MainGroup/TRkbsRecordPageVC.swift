@@ -359,7 +359,7 @@ extension TRkbsRecordPageVC {
         TRkbsDBManager.default.addHabitDayRecord(model: dayRecordItem) {
             debugPrint("add habit day record success")
             Notice.Center.default.post(name: .updateDayRecordList, with: nil)
-//            NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
+
             DispatchQueue.main.async {
                 ZKProgressHUD.showSuccess("打卡成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                     [weak self] in

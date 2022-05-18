@@ -303,8 +303,6 @@ extension TRkbsHabitVC {
                 Notice.Center.default.post(name: .updateDayRecordList, with: nil)
                 Notice.Center.default.post(name: .updateHabitList, with: nil)
                 
-//                NotificationCenter.default.post(name: .updateHabitList, object: nil)
-//                NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
                 ZKProgressHUD.showSuccess("删除成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                     [weak self] in
                     guard let `self` = self else {return}
@@ -342,7 +340,7 @@ extension TRkbsHabitVC {
                     debugPrint("update habit preview success")
                     
                     Notice.Center.default.post(name: .updateHabitList, with: nil)
-//                    NotificationCenter.default.post(name: .updateHabitList, object: nil)
+
                     DispatchQueue.main.async {
                         self.backBtnClick(sender: self.backBtn)
                     }
@@ -350,18 +348,30 @@ extension TRkbsHabitVC {
             }
             
         } else {
-            // add new
-            let item = TRkHabitPreviewItem(habitId: "nil", iconStr: currentIconStr, bgColorStr: currentBgColorStr, nameStr: currentHaibtName, timeTypeTagStr: currentTimeTypeTagStr, timeCount: 0)
-            
-            TRkbsDBManager.default.addHabitBound(model: item) {
-                debugPrint("add habit preview success")
-//                NotificationCenter.default.post(name: .updateHabitList, object: nil)
+            if TRkbsPurchaseManager.default.coinCount >= 1 {
+                // add new
+                let item = TRkHabitPreviewItem(habitId: "nil", iconStr: currentIconStr, bgColorStr: currentBgColorStr, nameStr: currentHaibtName, timeTypeTagStr: currentTimeTypeTagStr, timeCount: 0)
                 
-                Notice.Center.default.post(name: .updateHabitList, with: nil)
-                DispatchQueue.main.async {
-                    self.backBtnClick(sender: self.backBtn)
+                TRkbsDBManager.default.addHabitBound(model: item) {
+                    debugPrint("add habit preview success")
+                    
+                    Notice.Center.default.post(name: .updateHabitList, with: nil)
+                    DispatchQueue.main.async {
+                        self.backBtnClick(sender: self.backBtn)
+                        TRkbsPurchaseManager.default.consumeCoin()
+                    }
                 }
+            } else {
+                ZKProgressHUD.showMessage("抱歉金币不足，请先购买金币再进行操作", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 1) {
+                    [weak self] in
+                    guard let `self` = self else {return}
+                    DispatchQueue.main.async {
+                        self.present(TRkbsSettingVC(), animated: true)
+                    }
+                }
+                
             }
+            
         }
     }
     
