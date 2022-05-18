@@ -8,9 +8,10 @@
 import UIKit
 import SwiftUI
 import ZKProgressHUD
+import NoticeObserveKit
 
 class TRkbsRecordPageVC: UIViewController {
-
+    private var pool = Notice.ObserverPool()
     var currentHabitPreviewItem: TRkHabitPreviewItem
     var cancelClickActionBlock: (()->Void)?
     let topTitleBgV = UIView()
@@ -45,12 +46,29 @@ class TRkbsRecordPageVC: UIViewController {
         super.viewDidLoad()
         setupView()
         updateContenStatus()
+        updateHabitAllTimeCount()
         addNotification()
     }
     
     func addNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDayRecordList), name: .updateDayRecordList, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateHabitList), name: .updateHabitList, object: nil)
+        NotificationCenter.default.nok.observe(name: .updateHabitList) {[weak self] _ in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.updateHabitList()
+            }
+        }
+        .invalidated(by: pool)
+        //
+        NotificationCenter.default.nok.observe(name: .updateDayRecordList) {[weak self] _ in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.updateDayRecordList()
+            }
+        }
+        .invalidated(by: pool)
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateDayRecordList), name: .updateDayRecordList, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateHabitList), name: .updateHabitList, object: nil)
     }
 }
 
@@ -59,6 +77,7 @@ extension TRkbsRecordPageVC {
         if recordPage.alpha == 1 {
             recordPage.updateRecordData(habitId: currentHabitPreviewItem.habitId)
         }
+        updateHabitAllTimeCount()
     }
     
     @objc func updateHabitList() {
@@ -339,7 +358,8 @@ extension TRkbsRecordPageVC {
         
         TRkbsDBManager.default.addHabitDayRecord(model: dayRecordItem) {
             debugPrint("add habit day record success")
-            NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
+            Notice.Center.default.post(name: .updateDayRecordList, with: nil)
+//            NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
             DispatchQueue.main.async {
                 ZKProgressHUD.showSuccess("打卡成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                     [weak self] in

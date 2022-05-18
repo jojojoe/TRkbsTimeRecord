@@ -289,6 +289,26 @@ extension TRkbsDBManager {
         }
     }
     
+    func selectAllDayRecordItemListTimeCount(completionBlock: ((Double)->Void)?) {
+        do {
+            var timeCount: Double = 0
+            if let results = try db?.prepare("select * from DayRecordList") {
+                for row in results {
+                    
+                    let _ = row[0] as? String ?? ""
+                    let _ = row[1] as? String ?? ""
+                    let timeCount_m = row[2] as? Double ?? 0
+                    let _ = row[3] as? String ?? ""
+                    timeCount += timeCount_m
+                }
+            }
+             
+            completionBlock?(timeCount)
+            
+        } catch {
+            debugPrint("dberror: load favorites failed")
+        }
+    }
 }
 
 

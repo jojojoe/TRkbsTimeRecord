@@ -8,6 +8,8 @@
 import UIKit
 import Alertift
 import ZKProgressHUD
+import NoticeObserveKit
+
 class TEkbsRecordEditVC: UIViewController {
     var recordItem: TRkDayRecordItem
     let countPicker = UIPickerView()
@@ -210,8 +212,10 @@ class TEkbsRecordEditVC: UIViewController {
         
         TRkbsDBManager.default.addHabitDayRecord(model: dayRecordItem) {
             debugPrint("add habit day record success")
-            NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
-            NotificationCenter.default.post(name: .updateHabitList, object: nil)
+            Notice.Center.default.post(name: .updateDayRecordList, with: nil)
+            Notice.Center.default.post(name: .updateHabitList, with: nil)
+//            NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
+//            NotificationCenter.default.post(name: .updateHabitList, object: nil)
             ZKProgressHUD.showSuccess("修改成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                 [weak self] in
                 guard let `self` = self else {return}
@@ -256,8 +260,10 @@ extension TEkbsRecordEditVC {
     func deleteDayRecordItem() {
         TRkbsDBManager.default.deleteHabitDayRecordList(recordDateId: recordItem.recordDate) {
             debugPrint("delete day record success")
-            NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
-            NotificationCenter.default.post(name: .updateHabitList, object: nil)
+            Notice.Center.default.post(name: .updateDayRecordList, with: nil)
+            Notice.Center.default.post(name: .updateHabitList, with: nil)
+//            NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
+//            NotificationCenter.default.post(name: .updateHabitList, object: nil)
             ZKProgressHUD.showSuccess("删除成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                 [weak self] in
                 guard let `self` = self else {return}

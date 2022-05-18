@@ -7,6 +7,7 @@
 
 import Foundation
 import SwifterSwift
+import NoticeObserveKit
 
 struct TRkIconItem: Codable {
     var thumb: String?
@@ -39,11 +40,16 @@ struct TRkHabitPreviewItem: Codable {
     var timeCount: Double = 0
     
 }
-
-extension Notification.Name {
-    static let updateHabitList = Notification.Name("noti_updateHabitList")
-    static let updateDayRecordList = Notification.Name("noti_updateDayRecordList")
+extension Notice.Names {
+    static let updateHabitList = Notice.Name<Any?>(name: "noti_updateHabitList")
+    static let updateDayRecordList = Notice.Name<Any?>(name: "noti_updateDayRecordList")
+//    Notice.Center.default.post(name: .pi_noti_coinChange, with: nil)
 }
+
+//extension Notification.Name {
+//    static let updateHabitList = Notification.Name("noti_updateHabitList")
+//    static let updateDayRecordList = Notification.Name("noti_updateDayRecordList")
+//}
 
 class DataManagerTool: NSObject {
     static let `default` = DataManagerTool()

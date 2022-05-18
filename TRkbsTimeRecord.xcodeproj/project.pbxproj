@@ -27,6 +27,8 @@
 		EB433F822829F9D500830F26 /* TRkbsColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F812829F9D500830F26 /* TRkbsColorView.swift */; };
 		EB433F84282A0B1700830F26 /* TRkbsIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433F83282A0B1700830F26 /* TRkbsIconView.swift */; };
 		EB433FDD282A440600830F26 /* TRkbsTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433FDC282A440600830F26 /* TRkbsTagView.swift */; };
+		EB89A1642835149B002FEFF2 /* TRkbsPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB89A1632835149B002FEFF2 /* TRkbsPurchaseManager.swift */; };
+		EB89A1662835165B002FEFF2 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB89A1652835165B002FEFF2 /* Keychain.swift */; };
 		EF17A3343EEE31969B5C17F2 /* Pods_TRkbsTimeRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3CB8B243E3B90B5BD0248E /* Pods_TRkbsTimeRecord.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,8 @@
 		EB433F812829F9D500830F26 /* TRkbsColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsColorView.swift; sourceTree = "<group>"; };
 		EB433F83282A0B1700830F26 /* TRkbsIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsIconView.swift; sourceTree = "<group>"; };
 		EB433FDC282A440600830F26 /* TRkbsTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsTagView.swift; sourceTree = "<group>"; };
+		EB89A1632835149B002FEFF2 /* TRkbsPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsPurchaseManager.swift; sourceTree = "<group>"; };
+		EB89A1652835165B002FEFF2 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,8 @@
 			children = (
 				EB433F712828BD8700830F26 /* ExtensionTool.swift */,
 				EB433F732828BE3E00830F26 /* DataManagerTool.swift */,
+				EB89A1632835149B002FEFF2 /* TRkbsPurchaseManager.swift */,
+				EB89A1652835165B002FEFF2 /* Keychain.swift */,
 			);
 			path = ExtensionGroup;
 			sourceTree = "<group>";
@@ -299,12 +305,14 @@
 				EB433F592828B7F800830F26 /* AppDelegate.swift in Sources */,
 				D855CA4528312EA600443428 /* TEkbsRecordEditVC.swift in Sources */,
 				EB1192A92831E99D00FA6A7D /* TRkbsDBManager.swift in Sources */,
+				EB89A1662835165B002FEFF2 /* Keychain.swift in Sources */,
 				EB433F822829F9D500830F26 /* TRkbsColorView.swift in Sources */,
 				EB433F7E282906B800830F26 /* TRkbsContentListView.swift in Sources */,
 				EB433F5B2828B7F800830F26 /* SceneDelegate.swift in Sources */,
 				EB433F742828BE3E00830F26 /* DataManagerTool.swift in Sources */,
 				EB433F8028291EE500830F26 /* TRkbsHabitVC.swift in Sources */,
 				EB433F7A2828F47A00830F26 /* TRkbsTitleIndexView.swift in Sources */,
+				EB89A1642835149B002FEFF2 /* TRkbsPurchaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

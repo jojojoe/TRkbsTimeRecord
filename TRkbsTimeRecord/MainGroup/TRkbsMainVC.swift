@@ -7,9 +7,10 @@
 
 import UIKit
 import SnapKit
+import NoticeObserveKit
 
 class TRkbsMainVC: UIViewController {
-
+    private var pool = Notice.ObserverPool()
     let topDetailLabel = UILabel()
     let addNewBtn = UIButton()
     let titleIndexView = TRkbsTitleIndexView()
@@ -17,13 +18,12 @@ class TRkbsMainVC: UIViewController {
     let gradientMaskV = UIView()
     var didlayoutOnce: Once = Once()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let _ = TRkbsPurchaseManager.default.coinCount
         setupView()
         addNotification()
+        
     }
     
     deinit {
@@ -34,14 +34,31 @@ class TRkbsMainVC: UIViewController {
         super.viewDidLayoutSubviews()
         
         didlayoutOnce.run {
+            self.updateAllRecordTimeCount()
             self.gradientMaskV.gradientBackground(UIColor.clear, UIColor(hexString: "#1C1C1D")!)
         }
-        
         
     }
     
     func addNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateHabitList), name: .updateHabitList, object: nil)
+        NotificationCenter.default.nok.observe(name: .updateHabitList) {[weak self] _ in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.updateHabitList()
+            }
+        }
+        .invalidated(by: pool)
+        //
+        NotificationCenter.default.nok.observe(name: .updateDayRecordList) {[weak self] _ in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.updateDayRecordList()
+            }
+        }
+        .invalidated(by: pool)
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateHabitList), name: .updateHabitList, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateDayRecordList), name: .updateDayRecordList, object: nil)
     }
     
     @objc func updateHabitList() {
@@ -51,7 +68,15 @@ class TRkbsMainVC: UIViewController {
             self.contentListV.loadData()
         }
     }
-
+    @objc func updateDayRecordList() {
+        DispatchQueue.main.async {
+            [weak self] in
+            guard let `self` = self else {return}
+            self.updateAllRecordTimeCount()
+            self.contentListV.loadData()
+        }
+    }
+    
     func setupView() {
         //#1C1C1D
         view.backgroundColor(UIColor(hexString: "#1C1C1D")!)
@@ -88,14 +113,14 @@ class TRkbsMainVC: UIViewController {
             $0.width.height.equalTo(44)
         }
         userBtn.addTarget(self, action: #selector(userBtnClick(sender: )), for: .touchUpInside)
-        
+        userBtn.isHidden = true
         //
         let topTitleLabel = UILabel()
         topTitleLabel.adhere(toSuperview: topBanner)
             .text("小时间")
             .textAlignment(.center)
             .color(.white)
-            .fontName(20, "AppleSDGothicNeo-SemiBold")
+            .fontName(16, "AppleSDGothicNeo-SemiBold")
         topTitleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview().offset(-6)
@@ -104,7 +129,7 @@ class TRkbsMainVC: UIViewController {
         //
         
         topDetailLabel.adhere(toSuperview: topBanner)
-            .text("至今已经专注20天04小时30分")
+            .text("至今已经专注")
             .textAlignment(.center)
             .color(.white)
             .fontName(12, "AppleSDGothicNeo-Regular")
@@ -182,6 +207,17 @@ class TRkbsMainVC: UIViewController {
         
     }
 
+    func updateAllRecordTimeCount() {
+        TRkbsDBManager.default.selectAllDayRecordItemListTimeCount {[weak self] timeCount in
+            guard let `self` = self else {return}
+            let timeStr = DataManagerTool.default.formatDate(second: timeCount)
+            DispatchQueue.main.async {
+                self.topDetailLabel
+                    .text("至今已经专注\(timeStr)")
+            }
+        }
+        
+    }
 }
 
 extension TRkbsMainVC {
@@ -203,7 +239,7 @@ extension TRkbsMainVC {
 
 extension TRkbsMainVC {
     @objc func settingBtnClick(sender: UIButton) {
-        
+        self.present(TRkbsSettingVC(), animated: true)
     }
     
     @objc func userBtnClick(sender: UIButton) {
@@ -218,10 +254,7 @@ extension TRkbsMainVC {
 }
 
 extension TRkbsMainVC {
-    func updateTopDetailTime() {
-        topDetailLabel
-            .text("至今已经专注20天04小时30分")
-    }
+    
     
 }
 

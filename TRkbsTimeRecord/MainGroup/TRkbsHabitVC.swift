@@ -8,6 +8,7 @@
 import UIKit
 import ZKProgressHUD
 import Alertift
+import NoticeObserveKit
 
 class TRkbsHabitVC: UIViewController {
 
@@ -138,7 +139,7 @@ extension TRkbsHabitVC {
             .text("新的习惯")
             .textAlignment(.center)
             .color(.white)
-            .fontName(20, "AppleSDGothicNeo-SemiBold")
+            .fontName(16, "AppleSDGothicNeo-SemiBold")
         topTitleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
@@ -299,7 +300,11 @@ extension TRkbsHabitVC {
         if let habitItem = currentHabitPreviewItem {
             TRkbsDBManager.default.deleteHabitBound(habitId: habitItem.habitId) {
                 debugPrint("delete habit preview success")
-                NotificationCenter.default.post(name: .updateHabitList, object: nil)
+                Notice.Center.default.post(name: .updateDayRecordList, with: nil)
+                Notice.Center.default.post(name: .updateHabitList, with: nil)
+                
+//                NotificationCenter.default.post(name: .updateHabitList, object: nil)
+//                NotificationCenter.default.post(name: .updateDayRecordList, object: nil)
                 ZKProgressHUD.showSuccess("删除成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                     [weak self] in
                     guard let `self` = self else {return}
@@ -335,7 +340,9 @@ extension TRkbsHabitVC {
                 let item = TRkHabitPreviewItem(habitId: historyItem.habitId, iconStr: currentIconStr, bgColorStr: currentBgColorStr, nameStr: currentHaibtName, timeTypeTagStr: currentTimeTypeTagStr, timeCount: 0)
                 TRkbsDBManager.default.updateHabitBound(model: item) {
                     debugPrint("update habit preview success")
-                    NotificationCenter.default.post(name: .updateHabitList, object: nil)
+                    
+                    Notice.Center.default.post(name: .updateHabitList, with: nil)
+//                    NotificationCenter.default.post(name: .updateHabitList, object: nil)
                     DispatchQueue.main.async {
                         self.backBtnClick(sender: self.backBtn)
                     }
@@ -348,7 +355,9 @@ extension TRkbsHabitVC {
             
             TRkbsDBManager.default.addHabitBound(model: item) {
                 debugPrint("add habit preview success")
-                NotificationCenter.default.post(name: .updateHabitList, object: nil)
+//                NotificationCenter.default.post(name: .updateHabitList, object: nil)
+                
+                Notice.Center.default.post(name: .updateHabitList, with: nil)
                 DispatchQueue.main.async {
                     self.backBtnClick(sender: self.backBtn)
                 }
