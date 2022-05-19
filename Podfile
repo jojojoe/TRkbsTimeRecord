@@ -16,7 +16,7 @@ target 'TRkbsTimeRecord' do
   pod 'ZKProgressHUD'
   pod 'SwiftyJSON'
   pod 'SQLite.swift'
-  pod 'Neon'
+#  pod 'Neon'
   
 #  pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git'
   

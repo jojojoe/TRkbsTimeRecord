@@ -10,12 +10,12 @@ import UIKit
 
 
 class TRkbsContentListView: UIView {
-
+    let addOneBtn = UIButton()
     var collection: UICollectionView!
     var contentBoundList: [TRkPreviewBounld] = []
     var scrollCollectionBlock: ((IndexPath)->Void)?
     var selectItemBlock: ((TRkHabitPreviewItem)->Void)?
-    
+    var addOneBtnBlcok: (()->Void)?
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadData()
@@ -39,6 +39,11 @@ extension TRkbsContentListView {
             DispatchQueue.main.async {
                 self.contentBoundList = recordBounlds
                 self.collection.reloadData()
+                if recordBounlds.count == 0 {
+                    self.addOneBtn.isHidden = false
+                } else {
+                    self.addOneBtn.isHidden = true
+                }
             }
         }
         
@@ -60,6 +65,25 @@ extension TRkbsContentListView {
         }
         collection.register(cellWithClass: TRkbsContentListCell.self)
         collection.register(supplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: TRkbsContentListHeader.self)
+        
+        //
+        
+        addOneBtn.adhere(toSuperview: self)
+            .title("添加第一个小习惯吧！")
+            .titleColor(UIColor.white.withAlphaComponent(0.6))
+            .font(16, "AppleSDGothicNeo-SemiBold")
+        addOneBtn.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(80)
+            $0.centerX.equalToSuperview()
+            $0.width.height.greaterThanOrEqualTo(40)
+        }
+        addOneBtn.addTarget(self, action: #selector(addOneBtnClick(sender: )), for: .touchUpInside)
+        addOneBtn.isHidden = true
+        
+    }
+    
+    @objc func addOneBtnClick(sender: UIButton) {
+        addOneBtnBlcok?()
     }
 }
 

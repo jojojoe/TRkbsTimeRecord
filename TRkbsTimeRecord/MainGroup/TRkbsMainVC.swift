@@ -161,6 +161,13 @@ class TRkbsMainVC: UIViewController {
             $0.top.equalTo(titleIndexView.snp.bottom)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+        contentListV.addOneBtnBlcok = {
+            [weak self] in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.addNewBtnClick(sender: self.addNewBtn)
+            }
+        }
         contentListV.scrollCollectionBlock = {
             [weak self] scrollIndexP in
             guard let `self` = self else {return}

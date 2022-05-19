@@ -12,7 +12,7 @@ class TRkbsHabitRecordListView: UIView {
     var dayRecordList: [TRkDayRecordItem] = []
     var collection: UICollectionView!
     var currentHaibtId: String?
-    
+    let noneLabel = UILabel()
     override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -39,6 +39,11 @@ extension TRkbsHabitRecordListView {
             DispatchQueue.main.async {
                 self.dayRecordList = daylist
                 self.collection.reloadData()
+                if daylist.count == 0 {
+                    self.noneLabel.isHidden = false
+                } else {
+                    self.noneLabel.isHidden = true
+                }
             }
         }
         
@@ -61,6 +66,21 @@ extension TRkbsHabitRecordListView {
             $0.top.bottom.right.left.equalToSuperview()
         }
         collection.register(cellWithClass: TRkbsHabitDayRecordCell.self)
+        
+        //
+        
+        noneLabel
+            .fontName(14, "AppleSDGothicNeo-SemiBold")
+            .color(UIColor.white.withAlphaComponent(0.6))
+            .text("暂无记录")
+        noneLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(50)
+            $0.centerX.equalToSuperview()
+            $0.height.greaterThanOrEqualTo(40)
+            $0.left.equalToSuperview().offset(20)
+        }
+        noneLabel.isHidden = true
+        
     }
 }
 

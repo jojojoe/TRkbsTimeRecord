@@ -7,10 +7,11 @@
 
 import UIKit
 import MessageUI
-import Neon
 import DeviceKit
 import NoticeObserveKit
 import ZKProgressHUD
+
+
 class TRkbsSettingVC: UIViewController {
     
     private var pool = Notice.ObserverPool()
@@ -70,8 +71,26 @@ class TRkbsSettingVC: UIViewController {
             termBtn.addTarget(self, action: #selector(termsTBtnClick(sender: )), for: .touchUpInside)
             termBtn.layer.cornerRadius = 10
             
+            feedbackBtn.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(24)
+                $0.top.equalToSuperview().offset(10)
+                $0.centerX.equalToSuperview()
+                $0.height.equalTo(50)
+            }
+            termBtn.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(24)
+                $0.top.equalTo(feedbackBtn.snp.bottom).offset(10)
+                $0.centerX.equalToSuperview()
+                $0.height.equalTo(50)
+            }
+            privacyBtn.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(24)
+                $0.top.equalTo(termBtn.snp.bottom).offset(10)
+                $0.centerX.equalToSuperview()
+                $0.height.equalTo(50)
+            }
             
-            bottomBgV.groupAndFill(group: .vertical, views: [termBtn, feedbackBtn, privacyBtn], padding: 24)
+//            bottomBgV.groupAndFill(group: .vertical, views: [termBtn, feedbackBtn, privacyBtn], padding: 24)
             
             //
             let arrow1 = UIImageView()
