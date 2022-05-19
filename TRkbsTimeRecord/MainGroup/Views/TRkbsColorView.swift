@@ -34,12 +34,12 @@ extension TRkbsColorView {
         
         //
         let titIconImgV = UIImageView()
-        titIconImgV.image("")
+        titIconImgV.image("habit_color")
             .adhere(toSuperview: self)
         titIconImgV.snp.makeConstraints {
-            $0.left.equalTo(20)
+            $0.left.equalTo(14)
             $0.top.equalToSuperview().offset(4)
-            $0.width.height.equalTo(18)
+            $0.width.height.equalTo(52/2)
         }
         let titleNameLabel = UILabel()
         titleNameLabel.fontName(14, "AppleSDGothicNeo-SemiBold")
@@ -62,7 +62,7 @@ extension TRkbsColorView {
         collection.dataSource = self
         addSubview(collection)
         collection.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(30)
+            $0.top.equalToSuperview().offset(38)
             $0.bottom.right.left.equalToSuperview()
         }
         collection.register(cellWithClass: TRkbsColorCell.self)

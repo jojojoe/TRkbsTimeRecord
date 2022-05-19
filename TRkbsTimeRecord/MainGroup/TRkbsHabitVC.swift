@@ -112,8 +112,8 @@ extension TRkbsHabitVC {
         //
         
         backBtn.adhere(toSuperview: topBanner)
-            .image(UIImage(named: ""))
-            .backgroundColor(.lightGray)
+            .image(UIImage(named: "i_back"))
+            .backgroundColor(.clear)
         backBtn.snp.makeConstraints {
             $0.left.equalToSuperview().offset(10)
             $0.centerY.equalToSuperview()
@@ -124,8 +124,8 @@ extension TRkbsHabitVC {
         //
         let doneBtn = UIButton()
         doneBtn.adhere(toSuperview: topBanner)
-            .image(UIImage(named: ""))
-            .backgroundColor(.lightGray)
+            .image(UIImage(named: "i_done"))
+            .backgroundColor(.clear)
         doneBtn.snp.makeConstraints {
             $0.right.equalToSuperview().offset(-10)
             $0.centerY.equalToSuperview()
@@ -154,7 +154,7 @@ extension TRkbsHabitVC {
             $0.top.equalTo(topBanner.snp.bottom)
             $0.bottom.equalToSuperview()
         }
-        contentScrollV.contentSize = CGSize(width: UIScreen.width, height: 1200)
+        contentScrollV.contentSize = CGSize(width: UIScreen.width, height: 780)
         //
         let contentBgV = UIView()
         contentBgV.adhere(toSuperview: contentScrollV)
@@ -214,7 +214,7 @@ extension TRkbsHabitVC {
         colorView.snp.makeConstraints {
             $0.top.equalTo(textFiled.snp.bottom).offset(22)
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(colorView.cellW * 2 + colorView.padding + 35)
+            $0.height.equalTo(colorView.cellW * 2 + colorView.padding + 45)
         }
         colorView.colorSelectBlock = {
             [weak self] colorStr, colorIndexP in
@@ -229,7 +229,7 @@ extension TRkbsHabitVC {
         iconView.snp.makeConstraints {
             $0.top.equalTo(colorView.snp.bottom).offset(22)
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(colorView.cellW * 4 + colorView.padding * 3 + 35)
+            $0.height.equalTo(colorView.cellW * 4 + colorView.padding * 3 + 45)
         }
         iconView.iconSelectBlock = {
             [weak self] iconStr, iconIndexP in
@@ -245,7 +245,7 @@ extension TRkbsHabitVC {
         tagV.snp.makeConstraints {
             $0.top.equalTo(iconView.snp.bottom).offset(22)
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(30 + 35)
+            $0.height.equalTo(30 + 45)
         }
         tagV.tagCollection.selectItemBlock = {
             [weak self] tagitem, _ in

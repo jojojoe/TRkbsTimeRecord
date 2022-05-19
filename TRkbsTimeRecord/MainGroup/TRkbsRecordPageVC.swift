@@ -147,7 +147,7 @@ extension TRkbsRecordPageVC {
 
         topIconImgV.adhere(toSuperview: topTitleBgV)
             .contentMode(.scaleAspectFit)
-            .backgroundColor(.lightGray)
+            .backgroundColor(.clear)
         topIconImgV.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.left.equalToSuperview().offset(15)
@@ -178,8 +178,8 @@ extension TRkbsRecordPageVC {
         //
         let reeditBtn = UIButton()
         reeditBtn.adhere(toSuperview: topTitleBgV)
-            .image(UIImage(named: ""))
-            .backgroundColor(.lightGray)
+            .image(UIImage(named: "habitedit"))
+            .backgroundColor(.clear)
         reeditBtn.addTarget(self, action: #selector(reeditBtnClick(sender:)), for: .touchUpInside)
         reeditBtn.snp.makeConstraints {
             $0.centerY.equalToSuperview()

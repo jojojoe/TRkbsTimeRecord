@@ -55,8 +55,8 @@ class TEkbsRecordEditVC: UIViewController {
        //
        
         backBtn.adhere(toSuperview: topBanner)
-           .image(UIImage(named: ""))
-           .backgroundColor(.lightGray)
+           .image(UIImage(named: "i_downback"))
+           .backgroundColor(.clear)
         backBtn.addTarget(self, action: #selector(backBtnClick(sender:)), for: .touchUpInside)
         backBtn.snp.makeConstraints {
            $0.bottom.equalToSuperview()

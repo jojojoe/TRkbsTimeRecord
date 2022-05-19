@@ -93,8 +93,8 @@ class TRkbsMainVC: UIViewController {
         //
         let settingBtn = UIButton()
         settingBtn.adhere(toSuperview: topBanner)
-            .image(UIImage(named: ""))
-            .backgroundColor(.lightGray)
+            .image(UIImage(named: "setting"))
+            .backgroundColor(.clear)
         settingBtn.snp.makeConstraints {
             $0.left.equalToSuperview().offset(10)
             $0.centerY.equalToSuperview()
@@ -106,7 +106,7 @@ class TRkbsMainVC: UIViewController {
         let userBtn = UIButton()
         userBtn.adhere(toSuperview: topBanner)
             .image(UIImage(named: ""))
-            .backgroundColor(.lightGray)
+            .backgroundColor(.clear)
         userBtn.snp.makeConstraints {
             $0.right.equalToSuperview().offset(-10)
             $0.centerY.equalToSuperview()

@@ -73,6 +73,36 @@ class TRkbsSettingVC: UIViewController {
             
             bottomBgV.groupAndFill(group: .vertical, views: [termBtn, feedbackBtn, privacyBtn], padding: 24)
             
+            //
+            let arrow1 = UIImageView()
+            arrow1.image("arrow_r")
+                .adhere(toSuperview: termBtn)
+            arrow1.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.right.equalTo(-35)
+                $0.width.equalTo(20/2)
+                $0.height.equalTo(32/2)
+            }
+            //
+            let arrow2 = UIImageView()
+            arrow2.image("arrow_r")
+                .adhere(toSuperview: feedbackBtn)
+            arrow2.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.right.equalTo(-35)
+                $0.width.equalTo(20/2)
+                $0.height.equalTo(32/2)
+            }
+            //
+            let arrow3 = UIImageView()
+            arrow3.image("arrow_r")
+                .adhere(toSuperview: privacyBtn)
+            arrow3.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.right.equalTo(-35)
+                $0.width.equalTo(20/2)
+                $0.height.equalTo(32/2)
+            }
         }
     }
     
@@ -96,8 +126,8 @@ class TRkbsSettingVC: UIViewController {
        //
        let backBtn = UIButton()
         backBtn.adhere(toSuperview: topBanner)
-           .image(UIImage(named: ""))
-           .backgroundColor(.lightGray)
+           .image(UIImage(named: "i_downback"))
+           .backgroundColor(.clear)
         backBtn.addTarget(self, action: #selector(backBtnClick(sender:)), for: .touchUpInside)
         backBtn.snp.makeConstraints {
            $0.bottom.equalToSuperview()
@@ -153,12 +183,12 @@ class TRkbsSettingVC: UIViewController {
         //
         let topCoinImgV = UIImageView()
         topCoinImgV
-            .image("")
+            .image("coin_s")
             .adhere(toSuperview: purchaseTopV)
         topCoinImgV.snp.makeConstraints {
             $0.centerY.equalTo(userCoinLabel.snp.centerY)
             $0.left.equalTo(userCoinLabel.snp.right).offset(8)
-            $0.height.width.greaterThanOrEqualTo(24)
+            $0.height.width.greaterThanOrEqualTo(20)
         }
         
         //
@@ -171,12 +201,12 @@ class TRkbsSettingVC: UIViewController {
         //
         let coinImgV = UIImageView()
         coinImgV
-            .image("")
+            .image("coin_b")
             .adhere(toSuperview: purchaseBottomV)
         coinImgV.snp.makeConstraints {
             $0.centerY.equalTo(purchaseBottomV.snp.centerY)
-            $0.left.equalTo(purchaseBottomV.snp.left).offset(24)
-            $0.height.width.greaterThanOrEqualTo(44)
+            $0.left.equalTo(purchaseBottomV.snp.left).offset(14)
+            $0.height.width.greaterThanOrEqualTo(50)
         }
         //
         

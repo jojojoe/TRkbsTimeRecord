@@ -33,13 +33,6 @@ class TRkbsContentListView: UIView {
 extension TRkbsContentListView {
     func loadData() {
         // test
-//        let item1 = TRkHabitPreviewItem(habitId: "12334556", iconStr: "", bgColorStr: "#F2D0B1", nameStr: "看书", timeTypeTagStr: "任意", timeCount: 360000)
-//        let item2 = TRkHabitPreviewItem(habitId: "12334557", iconStr: "", bgColorStr: "#F6DAC0", nameStr: "坚持阅读", timeTypeTagStr: "早晨", timeCount: 260000)
-//        let item3 = TRkHabitPreviewItem(habitId: "12334558", iconStr: "", bgColorStr: "#D9D9E8", nameStr: "绘画", timeTypeTagStr: "早晨", timeCount: 660000)
-//        let bounld1 = TRkPreviewBounld(timeTypeStr: "任意", previewItems: [item1])
-//        let bounld2 = TRkPreviewBounld(timeTypeStr: "早晨", previewItems: [item2, item3])
-//
-//        contentBoundList = [bounld1, bounld2]
         
         TRkbsDBManager.default.selectAllHabitBound {[weak self] recordBounlds in
             guard let `self` = self else {return}
