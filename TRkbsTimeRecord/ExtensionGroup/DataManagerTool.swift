@@ -61,7 +61,34 @@ class DataManagerTool: NSObject {
 //        return DataManagerTool.default.loadJson([TRkIconItem].self, name: "iconList") ?? []
 //    }
     
-    var iconList: [String] = ["sticker1", "sticker2", "sticker3", "sticker4", "sticker5", "sticker6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"]
+    var iconList: [String] = ["swimmer",
+                              "guitar",
+                              "kiss",
+                              "playtime",
+                              "laundry-machine",
+                              "air-freight",
+                              "working 1",
+                              "book 1",
+                              "coffee",
+                              "sleep",
+                              "facial-treatment",
+                              "farming",
+                              "shopping-cart",
+                              "hospital-bed",
+                              "canvas",
+                              "sweep",
+                              "watching-a-movie",
+                              "baby-bath-tub",
+                              "cooking",
+                              "bike",
+                              "car",
+                              "talking",
+                              "pet",
+                              "writing",
+                              "game-console",
+                              "sport",
+                              "yoga",
+                              "walking"]
     
     var colorList: [String] = ["#F2D0B1", "#EDF2B1", "#FCFCFC", "#CEF4FC", "#CEDBFC", "#D7CEFC", "#EDCEFC", "#FCCEDB", "#E6FF83", "#FFE483", "#83C3FF", "#B983FF", "#8388FF", "#FF83DC"]
     

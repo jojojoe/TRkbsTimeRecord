@@ -73,6 +73,7 @@ extension TRkbsHabitRecordListView {
             .fontName(14, "AppleSDGothicNeo-SemiBold")
             .color(UIColor.white.withAlphaComponent(0.6))
             .text("暂无记录")
+            .adhere(toSuperview: self)
         noneLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(50)
             $0.centerX.equalToSuperview()
