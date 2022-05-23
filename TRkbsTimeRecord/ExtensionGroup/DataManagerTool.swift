@@ -143,29 +143,30 @@ extension DataManagerTool {
       // 结果默认格式为 1d 1h 1m
         var resultStr = formatter.string(from: TimeInterval(second)) ?? ""
 
-         var tempStr = resultStr.replacingOccurrences(of: "d", with: "")
-         tempStr = tempStr.replacingOccurrences(of: "h", with: "")
-         tempStr = tempStr.replacingOccurrences(of: "m", with: "")
-         let counts = tempStr.components(separatedBy: " ")
+         var tempStr = resultStr.replacingOccurrences(of: "天".localized(), with: " ")
+         tempStr = tempStr.replacingOccurrences(of: "小时".localized(), with: " ")
+         tempStr = tempStr.replacingOccurrences(of: "分钟".localized(), with: " ")
+         var counts = tempStr.components(separatedBy: " ")
+         counts = counts.removeAll("")
          if counts.count == 1 {
-             resultStr = counts.first! + "分钟"
+             resultStr = counts.first! + "分钟".localized()
          } else if counts.count == 2 {
              if counts.last! == "0" {
-                 resultStr = counts.first! + "小时"
+                 resultStr = counts.first! + "小时".localized()
              } else {
-                 resultStr = counts.first! + "小时" + counts.last! + "分钟"
+                 resultStr = counts.first! + "小时".localized() + counts.last! + "分钟".localized()
              }
              
          } else if counts.count == 3 {
              var hStr = ""
              var mStr = ""
              if counts[1] != "0" {
-                 hStr = counts[1] + "小时"
+                 hStr = counts[1] + "小时".localized()
              }
              if counts.last! != "0" {
-                 mStr = counts.last! + "分钟"
+                 mStr = counts.last! + "分钟".localized()
              }
-             resultStr = counts.first! + "天" + hStr + mStr
+             resultStr = counts.first! + "天".localized() + hStr + mStr
          }
         
          return resultStr
