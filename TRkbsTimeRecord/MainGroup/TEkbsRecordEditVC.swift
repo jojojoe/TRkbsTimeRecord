@@ -79,7 +79,7 @@ class TEkbsRecordEditVC: UIViewController {
         }
         //
         let date = DataManagerTool.default.convertDateStrToDate( dateStr: recordItem.recordDate)
-        let dateStr = DataManagerTool.default.formatDate(formatStr: "yyyy年MM月dd日", date: date)
+        let dateStr = DataManagerTool.default.formatDate(formatStr: "yyyy-MM-dd", date: date)
         let itemInfo = recordItem.infoStr
         
         let countStr = DataManagerTool.default.formatDate(second: recordItem.timeCount)
@@ -137,7 +137,7 @@ class TEkbsRecordEditVC: UIViewController {
         infoTextView.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12)
         infoTextView.textColor = UIColor.white
         infoTextView.layer.cornerRadius = 5
-        infoTextView.placeholder = "记录些什么吧...\n\n想法💡"
+        infoTextView.placeholder = "记录些什么吧...\n\n想法💡".localized()
         infoTextView.text = itemInfo
         infoTextView.snp.makeConstraints {
             $0.left.equalTo(40)
@@ -150,7 +150,7 @@ class TEkbsRecordEditVC: UIViewController {
         let dakaBtn = UIButton()
         dakaBtn.adhere(toSuperview: contentV)
                 .backgroundColor(UIColor(hexString: "#CDC6C2")!)
-                .title("修改")
+                .title("修改".localized())
                 .image(UIImage(named: ""))
                 .font(15, "AppleSDGothicNeo-SemiBold")
                 .titleColor(UIColor(hexString: "#A24B2C")!)
@@ -170,7 +170,7 @@ class TEkbsRecordEditVC: UIViewController {
         deleteBtn.adhere(toSuperview: contentV)
             .backgroundColor(UIColor(hexString: "#A24B2C")!, .normal)
 //            .backgroundColor(UIColor(hexString: "#CDC6C2")!, .normal)
-                .title("删除")
+            .title("删除".localized())
                 .image(UIImage(named: ""))
                 .font(15, "AppleSDGothicNeo-SemiBold")
                 .titleColor(UIColor(hexString: "#A24B2C")!, .selected)
@@ -215,7 +215,7 @@ class TEkbsRecordEditVC: UIViewController {
             Notice.Center.default.post(name: .updateDayRecordList, with: nil)
             Notice.Center.default.post(name: .updateHabitList, with: nil)
 
-            ZKProgressHUD.showSuccess("修改成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+            ZKProgressHUD.showSuccess("修改成功!".localized(), maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                 [weak self] in
                 guard let `self` = self else {return}
                 DispatchQueue.main.async {
@@ -227,9 +227,9 @@ class TEkbsRecordEditVC: UIViewController {
     
     @objc func deleteBtnClick(sender: UIButton) {
         
-        Alertift.alert(title: "确定要删除这条时间记录吗？", message: "")
-            .action(.cancel("取消"))
-            .action(.default("确定"), handler: {[weak self] _, _, _ in
+        Alertift.alert(title: "确定要删除这条时间记录吗", message: "")
+            .action(.cancel("取消".localized()))
+            .action(.default("确定".localized()), handler: {[weak self] _, _, _ in
                 guard let `self` = self else {return}
                 DispatchQueue.main.async {
                     self.deleteDayRecordItem()
@@ -262,7 +262,7 @@ extension TEkbsRecordEditVC {
             Notice.Center.default.post(name: .updateDayRecordList, with: nil)
             Notice.Center.default.post(name: .updateHabitList, with: nil)
 
-            ZKProgressHUD.showSuccess("删除成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+            ZKProgressHUD.showSuccess("删除成功!".localized(), maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                 [weak self] in
                 guard let `self` = self else {return}
                 DispatchQueue.main.async {

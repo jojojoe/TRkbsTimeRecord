@@ -136,7 +136,7 @@ extension TRkbsHabitVC {
         //
         let topTitleLabel = UILabel()
         topTitleLabel.adhere(toSuperview: topBanner)
-            .text("新的习惯")
+            .text("新的习惯".localized())
             .textAlignment(.center)
             .color(.white)
             .fontName(16, "AppleSDGothicNeo-SemiBold")
@@ -183,7 +183,7 @@ extension TRkbsHabitVC {
         }
         
         //
-        textFiled.attributedPlaceholder = NSAttributedString(string: "填入习惯名称", attributes: [NSAttributedString.Key.foregroundColor : UIColor(hexString: "#D7D7D7")!, NSAttributedString.Key.font : UIFont(name: "AppleSDGothicNeo-Regular", size: 14)!])
+        textFiled.attributedPlaceholder = NSAttributedString(string: "填入习惯名称".localized(), attributes: [NSAttributedString.Key.foregroundColor : UIColor(hexString: "#D7D7D7")!, NSAttributedString.Key.font : UIFont(name: "AppleSDGothicNeo-Regular", size: 12)!])
         
         textFiled.backgroundColor(UIColor.white.withAlphaComponent(0.3))
         textFiled.delegate = self
@@ -258,7 +258,7 @@ extension TRkbsHabitVC {
         //
         deleteBtn.adhere(toSuperview: view)
             .backgroundColor(UIColor(hexString: "#E5463A")!)
-            .title("删除这个习惯")
+            .title("删除这个习惯".localized())
             .titleColor(.white)
             .font(20, "AppleSDGothicNeo-SemiBold")
         deleteBtn.layer.cornerRadius = 6
@@ -281,9 +281,9 @@ extension TRkbsHabitVC {
     
     @objc func deleteBtnClick(sender: UIButton) {
         
-        Alertift.alert(title: "确定要删除该习惯吗", message: "这将删除掉所有该习惯下的记录")
-            .action(.cancel("取消"))
-            .action(.default("确定"), handler: {[weak self] _, _, _ in
+        Alertift.alert(title: "确定要删除该习惯吗".localized(), message: "这将删除掉所有该习惯下的记录".localized())
+            .action(.cancel("取消".localized()))
+            .action(.default("确定".localized()), handler: {[weak self] _, _, _ in
                 guard let `self` = self else {return}
                 DispatchQueue.main.async {
                     self.deleteHaibtPreview()
@@ -303,7 +303,7 @@ extension TRkbsHabitVC {
                 Notice.Center.default.post(name: .updateDayRecordList, with: nil)
                 Notice.Center.default.post(name: .updateHabitList, with: nil)
                 
-                ZKProgressHUD.showSuccess("删除成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+                ZKProgressHUD.showSuccess("删除成功!".localized(), maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                     [weak self] in
                     guard let `self` = self else {return}
                     DispatchQueue.main.async {
@@ -327,7 +327,7 @@ extension TRkbsHabitVC {
     
     @objc func doneBtnClick(sender: UIButton) {
         if textFiled.text == nil || textFiled.text == "" || currentHaibtName == "" {
-            ZKProgressHUD.showMessage("请输入习惯名称")
+            ZKProgressHUD.showMessage("请输入习惯名称".localized())
             return
         }
         if let historyItem = currentHabitPreviewItem {
@@ -346,7 +346,6 @@ extension TRkbsHabitVC {
                     }
                 }
             }
-            
         } else {
             if TRkbsPurchaseManager.default.coinCount >= 1 {
                 // add new
@@ -362,7 +361,7 @@ extension TRkbsHabitVC {
                     }
                 }
             } else {
-                ZKProgressHUD.showMessage("抱歉金币不足，请先购买金币再进行操作", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 1) {
+                ZKProgressHUD.showMessage("抱歉金币不足，请先购买金币再进行操作".localized(), maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 1) {
                     [weak self] in
                     guard let `self` = self else {return}
                     DispatchQueue.main.async {

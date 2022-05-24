@@ -117,7 +117,7 @@ class TRkbsMainVC: UIViewController {
         //
         let topTitleLabel = UILabel()
         topTitleLabel.adhere(toSuperview: topBanner)
-            .text("小时间")
+            .text("小时间".localized())
             .textAlignment(.center)
             .color(.white)
             .fontName(16, "AppleSDGothicNeo-SemiBold")
@@ -129,7 +129,7 @@ class TRkbsMainVC: UIViewController {
         //
         
         topDetailLabel.adhere(toSuperview: topBanner)
-            .text("至今已经专注")
+            .text("至今已经记录XX".localized())
             .textAlignment(.center)
             .color(.white)
             .fontName(12, "AppleSDGothicNeo-Regular")
@@ -194,7 +194,7 @@ class TRkbsMainVC: UIViewController {
         //
         addNewBtn.adhere(toSuperview: view)
             .backgroundColor(UIColor(hexString: "#CDC6C2")!)
-            .title("添加习惯")
+            .title("添加习惯".localized())
             .image(UIImage(named: ""))
             .font(15, "AppleSDGothicNeo-SemiBold")
             .titleColor(UIColor(hexString: "#A24B2C")!)
@@ -219,8 +219,10 @@ class TRkbsMainVC: UIViewController {
             guard let `self` = self else {return}
             let timeStr = DataManagerTool.default.formatDate(second: timeCount)
             DispatchQueue.main.async {
+                var str = "至今已经记录XX".localized()
+                str = str.replacingOccurrences(of: "XX", with: timeStr)
                 self.topDetailLabel
-                    .text("至今已经专注\(timeStr)")
+                    .text(str)
             }
         }
         

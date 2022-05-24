@@ -91,7 +91,7 @@ class DataManagerTool: NSObject {
                               "walking"]
     
     var colorList: [String] = ["#F2D0B1", "#EDF2B1", "#FCFCFC", "#CEF4FC", "#CEDBFC", "#D7CEFC", "#EDCEFC", "#FCCEDB", "#E6FF83", "#FFE483", "#83C3FF", "#B983FF", "#8388FF", "#FF83DC"]
-    
+//    ["任意".localized(), "早晨".localized(), "中午".localized(), "下午".localized(), "晚上".localized(), "睡前".localized()]
     var timeTypeTagList: [String] = ["任意", "早晨", "中午", "下午", "晚上", "睡前"]
     
     var countList: [String] {
@@ -103,7 +103,7 @@ class DataManagerTool: NSObject {
         
         return list
     }
-    var minhourList: [String] = ["分钟", "小时"]
+    var minhourList: [String] = ["分钟".localized(), "小时".localized()]
     
 }
 
@@ -154,9 +154,8 @@ extension DataManagerTool {
              if counts.last! == "0" {
                  resultStr = counts.first! + "小时".localized()
              } else {
-                 resultStr = counts.first! + "小时".localized() + counts.last! + "分钟".localized()
+                 resultStr = counts.first! + "小时".localized() + " " + counts.last! + "分钟".localized()
              }
-             
          } else if counts.count == 3 {
              var hStr = ""
              var mStr = ""
@@ -166,18 +165,9 @@ extension DataManagerTool {
              if counts.last! != "0" {
                  mStr = counts.last! + "分钟".localized()
              }
-             resultStr = counts.first! + "天".localized() + hStr + mStr
+             resultStr = counts.first! + "天".localized() + " " + hStr + " " + mStr
          }
-        
          return resultStr
-         
-      // 处理为 1天 1小时 1分钟 （根据自己需求处理）
-        resultStr = resultStr.replacingOccurrences(of: "d", with: "天", options: .literal, range: nil)
-        resultStr = resultStr.replacingOccurrences(of: "h", with: "小时", options: .literal, range: nil)
-        resultStr = resultStr.replacingOccurrences(of: "m", with: "分钟", options: .literal, range: nil)
-        
-        return resultStr
-
     }
 }
 

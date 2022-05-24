@@ -69,7 +69,7 @@ extension TRkbsContentListView {
         //
         
         addOneBtn.adhere(toSuperview: self)
-            .title("添加第一个小习惯吧！")
+            .title("添加第一个小习惯吧！".localized())
             .titleColor(UIColor.white.withAlphaComponent(0.6))
             .font(16, "AppleSDGothicNeo-SemiBold")
         addOneBtn.snp.makeConstraints {
@@ -113,7 +113,7 @@ extension TRkbsContentListView: UICollectionViewDataSource {
         if kind == UICollectionView.elementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withClass: TRkbsContentListHeader.self, for: indexPath)
             let bounld = contentBoundList[indexPath.section]
-            view.nameLabel.text = bounld.timeTypeStr
+            view.nameLabel.text = bounld.timeTypeStr.localized()
             return view
         }
         return UICollectionReusableView()
@@ -243,7 +243,7 @@ class TRkbsContentListCell: UICollectionViewCell {
             .adhere(toSuperview: contentBgV)
             .fontName(13, "AppleSDGothicNeo-Medium")
             .color(UIColor.darkGray)
-            .text("共计坚持")
+            .text("已经坚持".localized())
         infoLabel.snp.makeConstraints {
             $0.top.equalTo(contentBgV.snp.centerY).offset(2)
             $0.right.equalTo(contentBgV.snp.right).offset(-20)

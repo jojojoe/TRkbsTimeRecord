@@ -95,7 +95,7 @@ extension TRkbsRecordPageVC {
             guard let `self` = self else {return}
             let timeStr = DataManagerTool.default.formatDate(second: timeCount)
             DispatchQueue.main.async {
-                self.topDetailLabel.text("该习惯已经坚持:\(timeStr)")
+                self.topDetailLabel.text("\("该习惯已经坚持".localized()):\(timeStr)")
             }
         }
     }
@@ -168,11 +168,13 @@ extension TRkbsRecordPageVC {
 
         topDetailLabel.fontName(13, "AppleSDGothicNeo-Medium")
             .color(.darkText)
+            .numberOfLines(2)
             .adhere(toSuperview: topTitleBgV)
         topDetailLabel.snp.makeConstraints {
             $0.top.equalTo(topTitleBgV.snp.centerY)
             $0.left.equalTo(topIconImgV.snp.right).offset(15)
-            $0.width.height.greaterThanOrEqualTo(10)
+            $0.right.equalToSuperview().offset(-80)
+            $0.height.greaterThanOrEqualTo(10)
         }
         
         //
@@ -192,7 +194,7 @@ extension TRkbsRecordPageVC {
         recordTitleLabel.adhere(toSuperview: contentV)
             .fontName(16, "AppleSDGothicNeo-SemiBold")
             .color(.white)
-            .text("记录本次时间")
+            .text("记录本次时间".localized())
         recordTitleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(topTitleBgV.snp.bottom).offset(24)
@@ -231,7 +233,7 @@ extension TRkbsRecordPageVC {
         infoTextView.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12)
         infoTextView.textColor = UIColor.white
         infoTextView.layer.cornerRadius = 5
-        infoTextView.placeholder = "记录些什么吧...\n\n想法💡"
+        infoTextView.placeholder = "记录些什么吧...\n\n想法💡".localized()
         infoTextView.text = ""
         infoTextView.snp.makeConstraints {
             $0.left.equalTo(40)
@@ -244,7 +246,7 @@ extension TRkbsRecordPageVC {
         let dakaBtn = UIButton()
         dakaBtn.adhere(toSuperview: contentV)
                 .backgroundColor(UIColor(hexString: "#CDC6C2")!)
-                .title("打卡")
+                .title("打卡".localized())
                 .image(UIImage(named: ""))
                 .font(15, "AppleSDGothicNeo-SemiBold")
                 .titleColor(UIColor(hexString: "#A24B2C")!)
@@ -264,7 +266,7 @@ extension TRkbsRecordPageVC {
         recordListBtn.adhere(toSuperview: contentV)
             .backgroundColor(UIColor(hexString: "#A24B2C")!, .selected)
             .backgroundColor(UIColor(hexString: "#CDC6C2")!, .normal)
-                .title("查看记录日志")
+            .title("查看记录日志".localized())
                 .image(UIImage(named: ""))
                 .font(15, "AppleSDGothicNeo-SemiBold")
                 .titleColor(UIColor(hexString: "#CDC6C2")!, .selected)
@@ -361,7 +363,7 @@ extension TRkbsRecordPageVC {
             Notice.Center.default.post(name: .updateDayRecordList, with: nil)
 
             DispatchQueue.main.async {
-                ZKProgressHUD.showSuccess("打卡成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+                ZKProgressHUD.showSuccess("打卡成功!".localized(), maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                     [weak self] in
                     guard let `self` = self else {return}
                     DispatchQueue.main.async {

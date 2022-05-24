@@ -218,7 +218,7 @@ extension TRkbsPurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionO
             
             DispatchQueue.main.async {
                 ZKProgressHUD.dismiss()
-                ZKProgressHUD.showError("购买失败，请重试!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+                ZKProgressHUD.showError("购买失败，请重试!".localized(), maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                     [weak self] in
                     guard let `self` = self else {return}
                     DispatchQueue.main.async {
@@ -241,7 +241,7 @@ extension TRkbsPurchaseManager: SKProductsRequestDelegate, SKPaymentTransactionO
         } else {
             ZKProgressHUD.dismiss()
 //            ZKProgressHUD.showError("The purchase was unsuccessful, please try again.")
-            ZKProgressHUD.showError("购买失败，请重试!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+            ZKProgressHUD.showError("购买失败，请重试!".localized(), maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                 [weak self] in
                 guard let `self` = self else {return}
                 DispatchQueue.main.async {

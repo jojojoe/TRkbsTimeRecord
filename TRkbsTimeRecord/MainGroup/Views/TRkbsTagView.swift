@@ -34,7 +34,7 @@ extension TRkbsTagView {
         let titleNameLabel = UILabel()
         titleNameLabel.fontName(14, "AppleSDGothicNeo-SemiBold")
             .color(UIColor.white)
-            .text("添加习惯标签")
+            .text("添加习惯标签".localized())
             .adhere(toSuperview: self)
         titleNameLabel.snp.makeConstraints {
             $0.centerY.equalTo(titIconImgV.snp.centerY)

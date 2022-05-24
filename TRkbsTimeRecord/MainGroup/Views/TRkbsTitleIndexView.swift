@@ -64,8 +64,7 @@ extension TRkbsTitleIndexView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withClass: TRkbsTypeCollectionCell.self, for: indexPath)
         let name = titleTypeList[indexPath.item]
         cell.nameLabel
-            .text(name)
-        
+            .text(name.localized())
         if currentTitleType == name {
             cell.updateSelectStatus(isSele: true)
         } else {

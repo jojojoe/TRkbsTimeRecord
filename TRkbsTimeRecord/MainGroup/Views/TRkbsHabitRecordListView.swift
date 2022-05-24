@@ -72,7 +72,7 @@ extension TRkbsHabitRecordListView {
         noneLabel
             .fontName(14, "AppleSDGothicNeo-SemiBold")
             .color(UIColor.white.withAlphaComponent(0.6))
-            .text("暂无记录")
+            .text("暂无记录".localized())
             .adhere(toSuperview: self)
         noneLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(50)
@@ -211,9 +211,5 @@ class TRkbsHabitDayRecordCell: UICollectionViewCell {
             $0.left.equalTo(dateLabel.snp.right).offset(20)
             $0.width.height.greaterThanOrEqualTo(20)
         }
-        
-        
-        
-        
     }
 }

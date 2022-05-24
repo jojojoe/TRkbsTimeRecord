@@ -44,7 +44,7 @@ extension TRkbsColorView {
         let titleNameLabel = UILabel()
         titleNameLabel.fontName(14, "AppleSDGothicNeo-SemiBold")
             .color(UIColor.white)
-            .text("挑选背景颜色")
+            .text("挑选背景颜色".localized())
             .adhere(toSuperview: self)
         titleNameLabel.snp.makeConstraints {
             $0.centerY.equalTo(titIconImgV.snp.centerY)
@@ -163,9 +163,6 @@ class TRkbsColorCell: UICollectionViewCell {
         //
         
         selectV.backgroundColor(.clear)
-//            .image("editor_selected_color")
-        //        selectV.layer.borderColor = UIColor(hexString: "#D0C56A")?.cgColor
-        //        selectV.layer.borderWidth = 3
         selectV.adhere(toSuperview: contentView)
         selectV.snp.makeConstraints {
             $0.left.top.bottom.right.equalToSuperview()

@@ -10,7 +10,7 @@ import MessageUI
 import DeviceKit
 import NoticeObserveKit
 import ZKProgressHUD
-
+import StoreKit
 
 class TRkbsSettingVC: UIViewController {
     
@@ -38,18 +38,21 @@ class TRkbsSettingVC: UIViewController {
             
             let bottomBgV = UIView(frame: CGRect(x: 0, y: purchaseBanner.frame.maxY + 10, width: UIScreen.width, height: 258))
             bottomBgV.adhere(toSuperview: view)
-            let privaAttr = NSAttributedString(string: "隐私政策", attributes: [NSAttributedString.Key.font : UIFont(name: "AppleSDGothicNeo-Bold", size: 16)!, NSAttributedString.Key.foregroundColor : UIColor(hexString: "#A24B2C")!])
-            let termofAttr = NSAttributedString(string: "用户协议", attributes: [NSAttributedString.Key.font : UIFont(name: "AppleSDGothicNeo-Bold", size: 16)!, NSAttributedString.Key.foregroundColor : UIColor(hexString: "#A24B2C")!])
-            let feedAttr = NSAttributedString(string: "联系我们", attributes: [NSAttributedString.Key.font : UIFont(name: "AppleSDGothicNeo-Bold", size: 16)!, NSAttributedString.Key.foregroundColor : UIColor(hexString: "#A24B2C")!])
-            let privacyBtn = UIButton()
-            privacyBtn.contentHorizontalAlignment = .left
-            privacyBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
-            privacyBtn.setAttributedTitle(privaAttr, for: .normal)
-            privacyBtn
+            
+
+            
+            let appShareAttr = NSAttributedString(string: "给个好评".localized(), attributes: [NSAttributedString.Key.font : UIFont(name: "AppleSDGothicNeo-Bold", size: 16)!, NSAttributedString.Key.foregroundColor : UIColor(hexString: "#A24B2C")!])
+            let termofAttr = NSAttributedString(string: "隐私政策与用户协议".localized(), attributes: [NSAttributedString.Key.font : UIFont(name: "AppleSDGothicNeo-Bold", size: 16)!, NSAttributedString.Key.foregroundColor : UIColor(hexString: "#A24B2C")!])
+            let feedAttr = NSAttributedString(string: "联系我们".localized(), attributes: [NSAttributedString.Key.font : UIFont(name: "AppleSDGothicNeo-Bold", size: 16)!, NSAttributedString.Key.foregroundColor : UIColor(hexString: "#A24B2C")!])
+            let appShareBtn = UIButton()
+            appShareBtn.contentHorizontalAlignment = .left
+            appShareBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
+            appShareBtn.setAttributedTitle(appShareAttr, for: .normal)
+            appShareBtn
                 .backgroundColor(UIColor(hexString: "#CDC6C2")!)
                 .adhere(toSuperview: bottomBgV)
-            privacyBtn.addTarget(self, action: #selector(privacyBtnClick(sender: )), for: .touchUpInside)
-            privacyBtn.layer.cornerRadius = 10
+            appShareBtn.addTarget(self, action: #selector(appShareBtnClick(sender: )), for: .touchUpInside)
+            appShareBtn.layer.cornerRadius = 10
             //
             let feedbackBtn = UIButton()
             feedbackBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
@@ -83,14 +86,12 @@ class TRkbsSettingVC: UIViewController {
                 $0.centerX.equalToSuperview()
                 $0.height.equalTo(50)
             }
-            privacyBtn.snp.makeConstraints {
+            appShareBtn.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(24)
                 $0.top.equalTo(termBtn.snp.bottom).offset(10)
                 $0.centerX.equalToSuperview()
                 $0.height.equalTo(50)
             }
-            
-//            bottomBgV.groupAndFill(group: .vertical, views: [termBtn, feedbackBtn, privacyBtn], padding: 24)
             
             //
             let arrow1 = UIImageView()
@@ -115,7 +116,7 @@ class TRkbsSettingVC: UIViewController {
             //
             let arrow3 = UIImageView()
             arrow3.image("arrow_r")
-                .adhere(toSuperview: privacyBtn)
+                .adhere(toSuperview: appShareBtn)
             arrow3.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
                 $0.right.equalTo(-35)
@@ -125,14 +126,10 @@ class TRkbsSettingVC: UIViewController {
         }
     }
     
-
-    
     func setupView() {
         view.backgroundColor(UIColor(hexString: "#1C1C1D")!)
             .clipsToBounds()
-        
         //
-        
         topBanner.adhere(toSuperview: view)
             .backgroundColor(UIColor(hexString: "#252525")!)
         topBanner.snp.makeConstraints {
@@ -158,7 +155,7 @@ class TRkbsSettingVC: UIViewController {
         //
         let topTitleLabel = UILabel()
         topTitleLabel.adhere(toSuperview: topBanner)
-            .text("个人中心")
+            .text("个人中心".localized())
             .textAlignment(.center)
             .color(.white)
             .fontName(16, "AppleSDGothicNeo-SemiBold")
@@ -190,7 +187,7 @@ class TRkbsSettingVC: UIViewController {
             $0.height.equalTo(44)
         }
         userCoinLabel.adhere(toSuperview: purchaseTopV)
-            .text("您的金币数: \(TRkbsPurchaseManager.default.coinCount)")
+            .text("\("您的金币数".localized()): \(TRkbsPurchaseManager.default.coinCount)")
             .textAlignment(.center)
             .color(UIColor(hexString: "#A24B2C")!)
             .fontName(14, "AppleSDGothicNeo-SemiBold")
@@ -280,7 +277,7 @@ class TRkbsSettingVC: UIViewController {
         
         TRkbsPurchaseManager.default.purchaseIapId(item: item) { (success, errorString) in
             if success {
-                ZKProgressHUD.showSuccess("购买成功!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+                ZKProgressHUD.showSuccess("购买成功!".localized(), maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                     [weak self] in
                     guard let `self` = self else {return}
                     DispatchQueue.main.async {
@@ -288,7 +285,7 @@ class TRkbsSettingVC: UIViewController {
                     }
                 }
             } else {
-                ZKProgressHUD.showSuccess("购买失败，请重试!", maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
+                ZKProgressHUD.showSuccess("购买失败，请重试!".localized(), maskStyle: .none, onlyOnceFont: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16), autoDismissDelay: 0.8) {
                     [weak self] in
                     guard let `self` = self else {return}
                     DispatchQueue.main.async {
@@ -320,7 +317,7 @@ class TRkbsSettingVC: UIViewController {
     
     func updateCoinChange() {
         userCoinLabel
-            .text("您的金币数: \(TRkbsPurchaseManager.default.coinCount)")
+            .text("\("您的金币数".localized()): \(TRkbsPurchaseManager.default.coinCount)")
     }
     
     func updateBuyCoinStatus() {
@@ -344,13 +341,26 @@ class TRkbsSettingVC: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    @objc func privacyBtnClick(sender: UIButton) {
-        if let url = URL(string: PrivacyPolicyURLStr) {
+    @objc func appShareBtnClick(sender: UIButton) {
+        //
+        
+        let itunesStr = "itms-apps://itunes.apple.com/app/id\(AppAppStoreID)"
+        if let url = URL(string: itunesStr) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            if #available(iOS 14.0, *), let session = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                SKStoreReviewController.requestReview(in: session)
+            } else {
+                SKStoreReviewController.requestReview()
+            }
         }
+         
     }
     
     @objc func termsTBtnClick(sender: UIButton) {
+        if let url = URL(string: PrivacyPolicyURLStr) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
         if let url = URL(string: TermsofuseURLStr) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
@@ -382,7 +392,7 @@ extension TRkbsSettingVC: MFMailComposeViewControllerDelegate {
           //设置代理
           controller.mailComposeDelegate = self
           //设置主题
-          controller.setSubject("\(appName) Feedback")
+          controller.setSubject("")
           //设置收件人
           // FIXME: feed back email
           controller.setToRecipients([feedbackEmail])

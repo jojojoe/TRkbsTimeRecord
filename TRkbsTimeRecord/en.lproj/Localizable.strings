@@ -5,48 +5,49 @@
   Created by JOJO on 2022/5/23.
   
 */
+"小时间" = "Time Record";
 
-"任意" = "";
+"任意" = "Any";
 
-"早晨" = "";
+"早晨" = "Morn";
 
-"中午" = "";
+"中午" = "A.M.";
 
-"下午" = "";
+"下午" = "P.M.";
 
-"晚上" = "";
+"晚上" = "Noon";
 
-"睡前" = "";
+"睡前" = "Night";
 
-"小时间" = "";
+"至今已经记录XX" = "So far XX hours have been recorded";
 
-"至今已经记录XX" = "";
+"添加习惯" = "Add a Habit";
 
-"添加习惯" = "";
+"个人中心" = "Personal Center";
 
-"个人中心" = "";
+"您的金币数" = "Your Coins";
 
-"您的金币数" = "";
+"联系我们" = "Feedback";
 
-"联系我们" = "";
+"应用分享" = "App Sharing";
 
-"应用分享" = "";
+"给个好评" = "Give us a rating";
 
-"隐私政策与用户协议" = "";
+"隐私政策与用户协议" = "Privacy Policy & Terms of Use";
 
-"新的习惯" = "";
+"新的习惯" = "New Habit";
 
-"填入习惯名称" = "";
+"填入习惯名称" = "Enter name...";
 
-"挑选背景颜色" = "";
+"挑选背景颜色" = "Pick the color";
 
-"挑选图标" = "";
+"挑选图标" = "Pick the icon";
 
-"添加习惯标签" = "";
+"添加习惯标签" = "Pick the tag";
 
-"请输入习惯名称" = "";
+"请输入习惯名称" = "Please enter a habit name";
 
-"该习惯已经坚持" = "";
+"该习惯已经坚持" = "The habit has been adhered to for ";
 
 "天" = "d";
 
@@ -54,24 +55,57 @@
 
 "分钟" = "m";
 
-"" = "";
+"删除这个习惯" = "Delete this habit";
 
-"" = "";
+"确定要删除该习惯吗" = "Are you sure you want to delete the habit?";
 
-"" = "";
+"这将删除掉所有该习惯下的记录" = "This will delete all records under that habit";
 
-"" = "";
+"取消" = "Cancel";
 
-"" = "";
+"确定" = "OK";
 
-"" = "";
+"删除成功!" = "Deletion successful!";
 
-"" = "";
+"抱歉金币不足，请先购买金币再进行操作" = "Sorry that there are not enough gold coins, please buy gold coins before proceeding";
 
-"" = "";
+"记录本次时间" = "Record the time";
 
-"" = "";
+"记录些什么吧...\n\n想法💡" = "Record something...\n\nidea💡";
 
-"" = "";
+"打卡" = "Record";
 
-"" = "";
+"查看记录日志" = "View the log";
+
+"打卡成功!" = "Record success!";
+
+"修改" = "Revise";
+
+"删除" = "Delete";
+
+"修改成功!" = "Modification successful!";
+
+"确定要删除这条时间记录吗" = "Are you sure you want to delete this time record?";
+
+"购买成功!" = "Purchase successful!";
+
+"购买失败，请重试!" = "The purchase was unsuccessful, please try again.";
+
+"已经坚持" = "You have recorded";
+
+"添加第一个小习惯吧！" = "Add your first habit now!";
+
+"暂无记录" = "No Records";
+
+
+
+
+
+
+
+
+
+
+
+
+

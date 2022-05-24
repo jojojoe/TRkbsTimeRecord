@@ -44,7 +44,7 @@ extension TRkbsIconView {
         let titleNameLabel = UILabel()
         titleNameLabel.fontName(14, "AppleSDGothicNeo-SemiBold")
             .color(UIColor.white)
-            .text("挑选图标")
+            .text("挑选图标".localized())
             .adhere(toSuperview: self)
         titleNameLabel.snp.makeConstraints {
             $0.centerY.equalTo(titIconImgV.snp.centerY)
