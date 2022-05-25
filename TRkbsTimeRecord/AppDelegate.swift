@@ -11,12 +11,13 @@ import AppTrackingTransparency
 
 // com.time
 // com.xx.test.888888
-let AppName: String = "小时间"
+let AppName: String = "AppName"
 let purchaseUrl = ""
-let TermsofuseURLStr = "https://www.app-privacy-policy.com/live.php?token=ushOVrpMvLANYpcnNdvgZ81hAVt50P25"
-let PrivacyPolicyURLStr = "https://www.app-privacy-policy.com/live.php?token=YbhJk4hnlmAYgq9FIdWrk3hIlN7EUc5q"
+let TermsofuseURLStr = "TermsofuseURLStr"
+let PrivacyPolicyURLStr = "PrivacyPolicyURLStr"
 
-let feedbackEmail: String = "xx@gmail.com"
+
+let feedbackEmail: String = "superegg_picspace@163.com"
 let AppAppStoreID: String = ""
  
 

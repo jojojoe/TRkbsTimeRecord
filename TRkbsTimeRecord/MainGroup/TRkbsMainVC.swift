@@ -117,7 +117,7 @@ class TRkbsMainVC: UIViewController {
         //
         let topTitleLabel = UILabel()
         topTitleLabel.adhere(toSuperview: topBanner)
-            .text("小时间".localized())
+            .text(AppName.localized())
             .textAlignment(.center)
             .color(.white)
             .fontName(16, "AppleSDGothicNeo-SemiBold")

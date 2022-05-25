@@ -5,7 +5,11 @@
   Created by JOJO on 2022/5/23.
   
 */
-"小时间" = "小时间";
+"AppName" = "小时间";
+
+"TermsofuseURLStr" = "https://jojojoe.github.io/TRkbsTimeRecordResours/termsofuse_zh.html";
+
+"PrivacyPolicyURLStr" = "https://jojojoe.github.io/TRkbsTimeRecordResours/private_zh.html";
 
 "任意" = "任意";
 
@@ -109,7 +113,7 @@
 
 "隐私政策" = "隐私政策";
 
- 
+
 
 
 

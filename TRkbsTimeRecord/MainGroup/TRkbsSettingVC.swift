@@ -400,13 +400,13 @@ class TRkbsSettingVC: UIViewController {
     }
     
     func showPrivatePage() {
-        if let url = URL(string: PrivacyPolicyURLStr) {
+        if let url = URL(string: PrivacyPolicyURLStr.localized()) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
     func showTermsofusePage() {
-        if let url = URL(string: TermsofuseURLStr) {
+        if let url = URL(string: TermsofuseURLStr.localized()) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
