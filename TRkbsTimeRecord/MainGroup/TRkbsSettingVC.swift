@@ -333,6 +333,45 @@ class TRkbsSettingVC: UIViewController {
         
     }
     
+    func showTermsPrivateView() {
+        let contentV = TRkbsSettingPrivateTermsView()
+        contentV.adhere(toSuperview: view)
+        contentV.snp.makeConstraints {
+            $0.left.right.top.bottom.equalToSuperview()
+        }
+        contentV.alpha = 0
+        UIView.animate(withDuration: 0.35) {
+            contentV.alpha = 1
+        }
+        
+        contentV.backBtnClickBlock = {
+            [weak self] in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseInOut) {
+                    contentV.alpha = 0
+                } completion: { finished in
+                    if finished {
+                        contentV.removeFromSuperview()
+                    }
+                }
+            }
+        }
+        contentV.termsBtnClickBlock = {
+            [weak self] in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.showTermsofusePage()
+            }
+        }
+        contentV.privateBtnClickBlock = {
+            [weak self] in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.showPrivatePage()
+            }
+        }
+    }
     
     @objc func backBtnClick(sender: UIButton) {
         if self.navigationController != nil {
@@ -348,28 +387,29 @@ class TRkbsSettingVC: UIViewController {
         if let url = URL(string: itunesStr) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
-            if #available(iOS 14.0, *), let session = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                SKStoreReviewController.requestReview(in: session)
-            } else {
-                SKStoreReviewController.requestReview()
-            }
+            
         }
-         
     }
     
     @objc func termsTBtnClick(sender: UIButton) {
-        if let url = URL(string: PrivacyPolicyURLStr) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-        if let url = URL(string: TermsofuseURLStr) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
+        showTermsPrivateView()
     }
     
     @objc func feedbackBtnClick(sender: UIButton) {
         feedback()
     }
     
+    func showPrivatePage() {
+        if let url = URL(string: PrivacyPolicyURLStr) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    func showTermsofusePage() {
+        if let url = URL(string: TermsofuseURLStr) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
     
 }
 

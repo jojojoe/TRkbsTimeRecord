@@ -97,9 +97,17 @@
 
 "暂无记录" = "No Records";
 
+"隐私信息描述" = "When using this APP, we will apply for system permissions to collect device information and crash information for information push and promotion services. \nSensitive permissions such as albums and contacts will not be enabled by default, we will not use these functions without your consent";
+ 
+"掌控每一分钟" = "Take control of every minute";
 
+"版本号" = "Version";
 
+"请阅读并理解我们的" = "Please read and understand our";
 
+"用户服务协议" = "Terms of Use";
+
+"隐私政策" = "Privacy Policy";
 
 
 

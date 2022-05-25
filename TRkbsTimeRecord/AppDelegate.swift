@@ -11,7 +11,7 @@ import AppTrackingTransparency
 
 // com.time
 // com.xx.test.888888
-let AppName: String = "Time Record"
+let AppName: String = "小时间"
 let purchaseUrl = ""
 let TermsofuseURLStr = "https://www.app-privacy-policy.com/live.php?token=ushOVrpMvLANYpcnNdvgZ81hAVt50P25"
 let PrivacyPolicyURLStr = "https://www.app-privacy-policy.com/live.php?token=YbhJk4hnlmAYgq9FIdWrk3hIlN7EUc5q"

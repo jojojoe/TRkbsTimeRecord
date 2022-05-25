@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import ZKProgressHUD
 import NoticeObserveKit
+import StoreKit
 
 class TRkbsRecordPageVC: UIViewController {
     private var pool = Notice.ObserverPool()
@@ -67,8 +68,6 @@ class TRkbsRecordPageVC: UIViewController {
         }
         .invalidated(by: pool)
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateDayRecordList), name: .updateDayRecordList, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateHabitList), name: .updateHabitList, object: nil)
     }
 }
 
@@ -368,9 +367,18 @@ extension TRkbsRecordPageVC {
                     guard let `self` = self else {return}
                     DispatchQueue.main.async {
                         self.cancelClickActionBlock?()
+                        self.showRateUs()
                     }
                 }
             }
+        }
+    }
+    
+    func showRateUs() {
+        if #available(iOS 14.0, *), let session = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: session)
+        } else {
+            SKStoreReviewController.requestReview()
         }
     }
     

@@ -29,6 +29,7 @@
 		EB433FDD282A440600830F26 /* TRkbsTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB433FDC282A440600830F26 /* TRkbsTagView.swift */; };
 		EB89A1642835149B002FEFF2 /* TRkbsPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB89A1632835149B002FEFF2 /* TRkbsPurchaseManager.swift */; };
 		EB89A1662835165B002FEFF2 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB89A1652835165B002FEFF2 /* Keychain.swift */; };
+		EBC61714283DCC76001116BD /* TRkbsSettingPrivateTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC61713283DCC76001116BD /* TRkbsSettingPrivateTermsView.swift */; };
 		EBFE5D32283B8D1D00C7BCEC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EBFE5D34283B8D1D00C7BCEC /* Localizable.strings */; };
 		EF17A3343EEE31969B5C17F2 /* Pods_TRkbsTimeRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3CB8B243E3B90B5BD0248E /* Pods_TRkbsTimeRecord.framework */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		EB433FDC282A440600830F26 /* TRkbsTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsTagView.swift; sourceTree = "<group>"; };
 		EB89A1632835149B002FEFF2 /* TRkbsPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsPurchaseManager.swift; sourceTree = "<group>"; };
 		EB89A1652835165B002FEFF2 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		EBC61713283DCC76001116BD /* TRkbsSettingPrivateTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsSettingPrivateTermsView.swift; sourceTree = "<group>"; };
 		EBFE5D2E283B8CFB00C7BCEC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		EBFE5D2F283B8CFB00C7BCEC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		EBFE5D33283B8D1D00C7BCEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				EB433F83282A0B1700830F26 /* TRkbsIconView.swift */,
 				EB433FDC282A440600830F26 /* TRkbsTagView.swift */,
 				D855CA42282F72C100443428 /* TRkbsHabitRecordListView.swift */,
+				EBC61713283DCC76001116BD /* TRkbsSettingPrivateTermsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				EB433FDD282A440600830F26 /* TRkbsTagView.swift in Sources */,
 				EB433F592828B7F800830F26 /* AppDelegate.swift in Sources */,
 				D855CA4528312EA600443428 /* TEkbsRecordEditVC.swift in Sources */,
+				EBC61714283DCC76001116BD /* TRkbsSettingPrivateTermsView.swift in Sources */,
 				EB1192A92831E99D00FA6A7D /* TRkbsDBManager.swift in Sources */,
 				EB89A1662835165B002FEFF2 /* Keychain.swift in Sources */,
 				EB433F822829F9D500830F26 /* TRkbsColorView.swift in Sources */,
