@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  TRkbsTimeRecord
+
+  Created by JOJO on 2022/5/26.
+  
+*/
+"CFBundleDisplayName" = "时间卡片";
+"NSUserTrackingUsageDescription" = "获取标记权限向您提供更优质、安全的个性化服务及内容，未经同意我们不会用于其他目的；开启后，您也可以前往系统“设置-隐私”中随时关闭";
+

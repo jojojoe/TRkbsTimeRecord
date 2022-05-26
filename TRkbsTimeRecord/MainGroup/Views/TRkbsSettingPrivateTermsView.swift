@@ -52,7 +52,9 @@ class TRkbsSettingPrivateTermsView: UIView {
         let iconImgV = UIImageView()
         iconImgV.adhere(toSuperview: contentV)
             .contentMode(.scaleAspectFit)
-            .image("")
+            .image("appicon")
+            .clipsToBounds()
+        iconImgV.layer.cornerRadius = 6
         iconImgV.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(20)

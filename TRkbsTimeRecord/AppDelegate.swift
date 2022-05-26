@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import AppTrackingTransparency
 
 
-// com.time
+// com.timerecord.controlyourself
 // com.xx.test.888888
 let AppName: String = "AppName"
 let purchaseUrl = ""
@@ -37,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        appTrackingPermission()
+        
     }
   
     
@@ -85,18 +84,7 @@ extension AppDelegate {
             }
         }
     }
-    
-    func appTrackingPermission() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if #available(iOS 14, *) {
-                ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
-                    
-                })
-            } else {
-                
-            }
-        }
-    }
+     
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

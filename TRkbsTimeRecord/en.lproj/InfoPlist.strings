@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  TRkbsTimeRecord
+
+  Created by JOJO on 2022/5/26.
+  
+*/
+"CFBundleDisplayName" = "TimeCard";
+"NSUserTrackingUsageDescription" = "Obtain the permission to mark to provide you with better and safer personalized services and content, and we will not use it for other purposes without consent; after it is turned on, you can also go to the system \"Settings - Privacy\" to turn it off at any time";

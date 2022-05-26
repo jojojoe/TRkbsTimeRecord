@@ -321,16 +321,14 @@ class TRkbsSettingVC: UIViewController {
     }
     
     func updateBuyCoinStatus() {
-        
         if let item = TRkbsPurchaseManager.default.currentBuyModel {
             coinCountLabel.text("x \(item.coin)")
             if let localPrice = item.localPrice {
                 priceLabel.text(localPrice)
             } else {
-                priceLabel.text("¥\(item.price)")
+                priceLabel.text("\(item.price)")
             }
         }
-        
     }
     
     func showTermsPrivateView() {

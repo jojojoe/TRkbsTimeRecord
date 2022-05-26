@@ -48,7 +48,7 @@ class TRkbsPurchaseManager: NSObject {
     
     
     func loadIapList() -> [TRkCoinItem] {
-        let iapItem = TRkCoinItem.init(id: 0, iapId: "com.collagemaker.verpro.packcookies", coin: 10, price: "0.99")
+        let iapItem = TRkCoinItem.init(id: 0, iapId: "com.timerecord.controlyourself.coinOne", coin: 10, price: "0.99")
         return [iapItem]
     }
     
@@ -88,7 +88,7 @@ class TRkbsPurchaseManager: NSObject {
     func loadDefaultData() {
         
 #if DEBUG
-        TRkbsKeychainSaveManager.removeKeychainCoins()
+//        TRkbsKeychainSaveManager.removeKeychainCoins()
 #endif
         
         if TRkbsKeychainSaveManager.isFirstSendCoin() {
