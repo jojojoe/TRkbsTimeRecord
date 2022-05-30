@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D855CA43282F72C100443428 /* TRkbsHabitRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D855CA42282F72C100443428 /* TRkbsHabitRecordListView.swift */; };
 		D855CA4528312EA600443428 /* TEkbsRecordEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D855CA4428312EA600443428 /* TEkbsRecordEditVC.swift */; };
+		D855CA4728411B8C00443428 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D855CA4628411B8C00443428 /* StoreKit.framework */; };
 		EB1192A92831E99D00FA6A7D /* TRkbsDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1192A82831E99D00FA6A7D /* TRkbsDBManager.swift */; };
 		EB37E781282DF48100579584 /* TRkbsRecordPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB37E780282DF48100579584 /* TRkbsRecordPageVC.swift */; };
 		EB3D095C283F6699001E1EB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EB3D095E283F6699001E1EB3 /* InfoPlist.strings */; };
@@ -41,6 +42,9 @@
 		AE3CB8B243E3B90B5BD0248E /* Pods_TRkbsTimeRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRkbsTimeRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D855CA42282F72C100443428 /* TRkbsHabitRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsHabitRecordListView.swift; sourceTree = "<group>"; };
 		D855CA4428312EA600443428 /* TEkbsRecordEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEkbsRecordEditVC.swift; sourceTree = "<group>"; };
+		D855CA4628411B8C00443428 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		D855CA4828411B8F00443428 /* TRkbsTimeRecord.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TRkbsTimeRecord.entitlements; sourceTree = "<group>"; };
+		D855CA4928411BB700443428 /* TRkbsTimeRecordRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TRkbsTimeRecordRelease.entitlements; sourceTree = "<group>"; };
 		EB1192A82831E99D00FA6A7D /* TRkbsDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsDBManager.swift; sourceTree = "<group>"; };
 		EB37E780282DF48100579584 /* TRkbsRecordPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRkbsRecordPageVC.swift; sourceTree = "<group>"; };
 		EB3D0959283F1AFB001E1EB3 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF17A3343EEE31969B5C17F2 /* Pods_TRkbsTimeRecord.framework in Frameworks */,
+				D855CA4728411B8C00443428 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +99,7 @@
 		A6ED72081D8C306C3CC02227 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D855CA4628411B8C00443428 /* StoreKit.framework */,
 				AE3CB8B243E3B90B5BD0248E /* Pods_TRkbsTimeRecord.framework */,
 			);
 			name = Frameworks;
@@ -137,6 +143,8 @@
 		EB433F572828B7F800830F26 /* TRkbsTimeRecord */ = {
 			isa = PBXGroup;
 			children = (
+				D855CA4928411BB700443428 /* TRkbsTimeRecordRelease.entitlements */,
+				D855CA4828411B8F00443428 /* TRkbsTimeRecord.entitlements */,
 				EB1192A72831E98A00FA6A7D /* DBManager */,
 				EB433F702828BD7300830F26 /* ExtensionGroup */,
 				EB433F6D2828BC2C00830F26 /* MainGroup */,
@@ -513,11 +521,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TRkbsTimeRecord/TRkbsTimeRecord.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.0.1;
+				DEVELOPMENT_TEAM = 53ADUL6525;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TRkbsTimeRecord/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TimeRecord;
+				INFOPLIST_KEY_CFBundleDisplayName = "Habit Recorder";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App needs your camera permission to take photo and edit it shape, mask, cut it, add stickers, text and other effect.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "App needs your photo gallery permission to choose photo, and apply the shape editor, video cut, sticker, text and other effect.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App needs your photo gallery permission to choose and save photo, and apply the shape editor, video cut, sticker, textand other effect.";
@@ -533,7 +543,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kbs.TRkbsTimeRecord;
+				PRODUCT_BUNDLE_IDENTIFIER = com.picpli.pailide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -547,11 +557,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TRkbsTimeRecord/TRkbsTimeRecordRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.0.1;
+				DEVELOPMENT_TEAM = 53ADUL6525;
+				EXCLUDED_ARCHS = armv7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TRkbsTimeRecord/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TimeRecord;
+				INFOPLIST_KEY_CFBundleDisplayName = "Habit Recorder";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App needs your camera permission to take photo and edit it shape, mask, cut it, add stickers, text and other effect.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "App needs your photo gallery permission to choose photo, and apply the shape editor, video cut, sticker, text and other effect.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App needs your photo gallery permission to choose and save photo, and apply the shape editor, video cut, sticker, textand other effect.";
@@ -567,7 +580,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kbs.TRkbsTimeRecord;
+				PRODUCT_BUNDLE_IDENTIFIER = com.picpli.pailide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

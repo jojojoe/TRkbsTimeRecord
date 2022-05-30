@@ -8,7 +8,7 @@
 import UIKit
 
 
-// com.timerecord.controlyourself
+// com.picpli.pailide
 // com.xx.test.888888
 let AppName: String = "AppName"
 let purchaseUrl = ""

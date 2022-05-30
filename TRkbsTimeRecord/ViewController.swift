@@ -21,7 +21,14 @@ class ViewController: UIViewController {
  关键词：
  zh：时间管理,记录,计划,学习计划,打卡,日常,计划表,时间记录,规划,记录生活,早起,制定计划,目标打卡,坚持,习惯,养成,监督,21天打卡,记事本,签到,健身,事件记录,签到,工作,学习,自律,井井有条,提醒,效率,心理,高效,拖延,柳比歇夫
  
+ -- 时间管理,记录,计划,学习计划,打卡,日常,计划表,时间记录,规划,记录生活,早起,制定计划,目标打卡,坚持,习惯,监督,签到,健身,事件记录,签到,工作,学习,自律,提醒,效率,心理,高效,柳比歇夫
+ 
  en: habit tracker,time,record,daily,date,goals,tracker,check,life tracker,daily tasks,time management,Pomodoro,efficiency,efficient,procrastination,Lyubishev,just do it,list
+ 
+ --  habit tracker,time,record,daily,date,goal,tracker,check,life,daily tasks,efficient,Lyubishev,remind
+
+ 
+ 
  
  描述：
  zh:
@@ -35,8 +42,8 @@ class ViewController: UIViewController {
  
  en:
  Efficiency has skyrocketed, and a day has become 48 hours! Time management masters teach you how to increase the length of your time, master more skills than others, and refresh your perception of efficiency! We must be masters of time, not slaves of time.
-  Time Record app is a very popular time management tool. It adopts the time recording method of time management master Ljubyshev, so that you don't have to be chased by time, you only need to record what you do every time, day after day. Record the day, you will see a new self.
-  In the Time Record app, you can add anything you want to do, and then in the future, as long as you do this thing, record the time you have completed, the time card will count your time, a period of time. Over time, you will see how much time you spend on something.
+  Habit Recorder app is a very popular time management tool. It adopts the Habit Recorder method of time management master Ljubyshev, so that you don't have to be chased by time, you only need to record what you do every time, day after day. Record the day, you will see a new self.
+  In the Habit Recorder app, you can add anything you want to do, and then in the future, as long as you do this thing, record the time you have completed, the time card will count your time, a period of time. Over time, you will see how much time you spend on something.
  
  - Terms of Use: https://jojojoe.github.io/TRkbsTimeRecordResours/termsofuse_en.html
  - Privacy Policy: https://jojojoe.github.io/TRkbsTimeRecordResours/private_en.html
@@ -44,7 +51,7 @@ class ViewController: UIViewController {
  
  标题 - 副标题：
  zh：时间卡片 -  时间记录与习惯养成
- en：Time Record - Habits Tracker
+ en：Habit Recorder - Time Tracker and Management
  
  
 

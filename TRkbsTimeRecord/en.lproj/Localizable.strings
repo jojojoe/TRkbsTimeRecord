@@ -5,7 +5,7 @@
   Created by JOJO on 2022/5/23.
   
 */
-"AppName" = "TimeCard";
+"AppName" = "Habit Recorder";
 
 "TermsofuseURLStr" = "https://jojojoe.github.io/TRkbsTimeRecordResours/termsofuse_en.html";
 
@@ -71,7 +71,7 @@
 
 "删除成功!" = "Deletion successful!";
 
-"抱歉金币不足，请先购买金币再进行操作" = "Sorry that there are not enough gold coins, please buy gold coins before proceeding";
+"抱歉金币不足，请先购买金币再进行操作" = "Sorry that there are not enough coins, please buy coins before add a haib";
 
 "记录本次时间" = "Record the time";
 

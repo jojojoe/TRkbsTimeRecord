@@ -48,7 +48,7 @@ class TRkbsPurchaseManager: NSObject {
     
     
     func loadIapList() -> [TRkCoinItem] {
-        let iapItem = TRkCoinItem.init(id: 0, iapId: "com.timerecord.controlyourself.coinOne", coin: 10, price: "0.99")
+        let iapItem = TRkCoinItem.init(id: 0, iapId: "com.picpli.pailide.coin", coin: 10, price: "0.99")
         return [iapItem]
     }
     

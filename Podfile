@@ -12,7 +12,7 @@ target 'TRkbsTimeRecord' do
   pod 'NoticeObserveKit'
   pod 'Swifter'
   pod 'SnapKit'
-  pod 'Alertift'；
+  pod 'Alertift'
   pod 'ZKProgressHUD'
   pod 'SwiftyJSON'
   pod 'SQLite.swift'
