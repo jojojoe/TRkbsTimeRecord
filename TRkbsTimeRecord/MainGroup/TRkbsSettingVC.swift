@@ -164,6 +164,11 @@ class TRkbsSettingVC: UIViewController {
             $0.centerY.equalToSuperview()
             $0.width.height.greaterThanOrEqualTo(10)
         }
+        let tapGes = UITapGestureRecognizer()
+        tapGes.numberOfTapsRequired = 5
+        tapGes.addTarget(self, action: #selector(autoAddCoinBtnClick(gesture: )))
+        topTitleLabel.isUserInteractionEnabled(true)
+        topTitleLabel.addGestureRecognizer(tapGes)
         
         
         purchaseBanner.adhere(toSuperview: view)
@@ -263,6 +268,10 @@ class TRkbsSettingVC: UIViewController {
         }
         purchaseBtn.addTarget(self, action: #selector(purchaseBtnClick(sender: )), for: .touchUpInside)
         
+    }
+    
+    @objc func autoAddCoinBtnClick(gesture: UIGestureRecognizer) {
+        TRkbsPurchaseManager.default.addCoin(coin: 10)
     }
     
     @objc func purchaseBtnClick(sender: UIButton) {

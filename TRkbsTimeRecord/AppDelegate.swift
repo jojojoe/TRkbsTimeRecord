@@ -17,7 +17,7 @@ let PrivacyPolicyURLStr = "PrivacyPolicyURLStr"
 
 
 let feedbackEmail: String = "superegg_picspace@163.com"
-let AppAppStoreID: String = ""
+let AppAppStoreID: String = "1607633466"
  
 
 

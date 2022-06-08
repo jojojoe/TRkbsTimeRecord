@@ -23,6 +23,8 @@ class ViewController: UIViewController {
  
  更换中国区图标 appid添加 加金币后门 第五个以后开始收费
  
+ 图标
+ https://cloud.tencent.com/developer/article/1923554
  
  
  

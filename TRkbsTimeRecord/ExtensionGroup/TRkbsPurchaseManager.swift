@@ -38,7 +38,7 @@ class TRkCoinItem {
 class TRkbsPurchaseManager: NSObject {
     var coinCount: Int = 0
     var coinIpaItemList: [TRkCoinItem] = []
-    let coinFirst: Int = 2
+    let coinFirst: Int = 5
     let coinCostCount: Int = 1
     let k_localizedPriceList = "TRkCoinItem.localizedPriceList"
     var currentBuyModel: TRkCoinItem?

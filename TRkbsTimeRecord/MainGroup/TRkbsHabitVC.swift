@@ -368,9 +368,7 @@ extension TRkbsHabitVC {
                         self.present(TRkbsSettingVC(), animated: true)
                     }
                 }
-                
             }
-            
         }
     }
     
